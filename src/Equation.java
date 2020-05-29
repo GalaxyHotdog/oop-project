@@ -56,7 +56,7 @@ public class Equation {
                 double a2 = ((val >= 0) ? (Math.acos((-q / 2) / Math.sqrt(a1))) : (-Math.acos((-q / 2) / Math.sqrt(a1)))) / 3;
                 v = Math.exp(Math.log(Math.sqrt(a1)) / 3) * Math.cos(a2);
                 v1 = Math.exp(Math.log(Math.sqrt(a1)) / 3) * Math.sin(a2);
-                x1 = ((3 * val * val * val + 3 * val * v1 * v1 - p * v) / (3 * v * v + 3 * v1 * v1)) - (b / (3 * a));
+                x1 = ((3 * v * v * v + 3 * v * v1 * v1 - p * v) / (3 * v * v + 3 * v1 * v1)) - (b / (3 * a));
                 x2 = (-b - a * x1 + Math.sqrt((b + a * x1) * (b + a * x1) - 4 * a *(c + b * x1 + a * x1 * x1))) / (2 * a);
                 x3 = (-b - a * x1 - Math.sqrt((b + a * x1) * (b + a * x1) - 4 * a *(c + b * x1 + a * x1 * x1))) / (2 * a);
                 System.out.print("(" + x1 + ") \n(" + x2 + ") \n(" + x3 + ") \n");
