@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Equation {
-    public static void Quadratic(String[] args) {
+    public static void Quadratic() {
         Scanner scn = new Scanner(System.in);
         double a, b, c, x1, xx1, x2, xx2, delta;
         try {
@@ -29,8 +29,8 @@ public class Equation {
         }
     }
 
-    public static void cubic(String[] args) {
-        double a, b, c, d, delta, p, q, x1, xx1, x2, xx2, x3, xx3, v, v1, v2;
+    public static void cubic() {
+        double a, b, c, d, delta, p, q, x1, xx1, x2, xx2, x3, xx3, v, v1, v2, v3, v4;
         Scanner scn = new Scanner(System.in);
         a = scn.nextDouble();
         b = scn.nextDouble();
@@ -38,13 +38,24 @@ public class Equation {
         d = scn.nextDouble();
         p = (3 * a * c - b * b) / (3 * a * a);
         q = (2 * b * b * b - 9 * a * b * c + 27 * a * a * d) / (27 * a * a* a);
-        delta = (27 * p * p + 4 * q * q * q) / 27;
+        delta = (27 * q * q + 4 * p * p * p) / 27;
         if (a == 0) {
             System.out.println("Invalid equation.");
         } else {
             if (delta > 0) {
                 v = 0.5*(Math.sqrt(delta)-q);
+                v1 = (v >= 0) ? (Math.exp(Math.log(Math.abs(v)) / 3)) : (-Math.exp(Math.log(Math.abs(v)) / 3));
+                x1 = (3 * a * v1 * v1 - a * p - b * v1) / (3 * a * v1);
+                x2 = -(b + a * x1) / (2 * a);
+                xx2 = (Math.sqrt(4 * a * (c + b * x1 + a * x1 * x1) - (b + a * x1) * (b + a * x1))) / (2 * Math.abs(a));
+                System.out.print(x1+"\n"+x2+"-"+xx2+"i\n"+x2+"+"+xx2+"i\n");
+            }
+            else if(delta==0){
+
             }
         }
+    }
+    public static void main(String[] args){
+        cubic();
     }
 }
