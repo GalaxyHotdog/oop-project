@@ -48,7 +48,7 @@ public class Equation {
                 x1 = (3 * a * v1 * v1 - a * p - b * v1) / (3 * a * v1);
                 x2 = -(b + a * x1) / (2 * a);
                 xx2 = (Math.sqrt(4 * a * (c + b * x1 + a * x1 * x1) - (b + a * x1) * (b + a * x1))) / (2 * Math.abs(a));
-                System.out.print("("+x1+")\n("+x2+")-("+xx2+")i\n("+x2+")+("+xx2+")i\n");
+                System.out.print("x1 = ("+x1+")\nx2 = ("+x2+") - ("+xx2+")i\nx3 = ("+x2+") + ("+xx2+")i\n");
             }
             else if(delta<0){
                 double val = 0.5 * Math.sqrt(Math.abs(delta));
@@ -59,7 +59,15 @@ public class Equation {
                 x1 = ((3 * v * v * v + 3 * v * v1 * v1 - p * v) / (3 * v * v + 3 * v1 * v1)) - (b / (3 * a));
                 x2 = (-b - a * x1 + Math.sqrt((b + a * x1) * (b + a * x1) - 4 * a *(c + b * x1 + a * x1 * x1))) / (2 * a);
                 x3 = (-b - a * x1 - Math.sqrt((b + a * x1) * (b + a * x1) - 4 * a *(c + b * x1 + a * x1 * x1))) / (2 * a);
-                System.out.print("(" + x1 + ") \n(" + x2 + ") \n(" + x3 + ") \n");
+                System.out.print("x1 = (" + x1 + ") \nx2 = (" + x2 + ") \nx3 = (" + x3 + ") \n");
+            }
+            else if(delta==0){
+                v=-b;
+                v1=3*a;
+                x1=v/v1;
+                x2=x1;
+                x3=x2;
+                System.out.print("x1 = (" + x1 + ") \nx2 = (" + x2 + ") \nx3 = (" + x3 + ") \n");
             }
         }
     }
