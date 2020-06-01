@@ -1,14 +1,14 @@
 import java.util.Scanner;
 
 public class Equation {
-    public static void Quadratic() {
+    public static void Quadratic(double i,double j,double k) {
         Scanner scn = new Scanner(System.in);
         double a, b, c, x1, xx1, x2, xx2, delta;
         try {
             System.out.println("ax^2+bx+c. Enter the value of a, b, c.");
-            a = scn.nextDouble();
-            b = scn.nextDouble();
-            c = scn.nextDouble();
+            a = i;
+            b = j;
+            c = k;
 
             delta = b * b - 4 * a * c;
             if (delta >= 0) {
@@ -29,13 +29,13 @@ public class Equation {
         }
     }
 
-    public static void cubic() {
+    public static void cubic(double i,double j,double k,double l) {
         double a, b, c, d, delta, p, q, x1, xx1, x2, xx2, x3, xx3, v, v1, v2, v3, v4;
         Scanner scn = new Scanner(System.in);
-        a = scn.nextDouble();
-        b = scn.nextDouble();
-        c = scn.nextDouble();
-        d = scn.nextDouble();
+        a = i;
+        b = j;
+        c = k;
+        d = l;
         p = (3 * a * c - b * b) / (3 * a * a);
         q = (2 * b * b * b - 9 * a * b * c + 27 * a * a * d) / (27 * a * a* a);
         delta = (27 * q * q + 4 * p * p * p) / 27;
@@ -71,7 +71,30 @@ public class Equation {
             }
         }
     }
+    public static void Ternary_Linear(){
+        Scanner scn = new Scanner(System.in);
+        int i=1;
+        double x,y,z;
+        double a1,b1,c1,d1,a2,b2,c2,d2,a3,b3,c3,d3;
+        a1=scn.nextDouble();
+        b1=scn.nextDouble();
+        c1=scn.nextDouble();
+        d1=scn.nextDouble();
+        a2=scn.nextDouble();
+        b2=scn.nextDouble();
+        c2=scn.nextDouble();
+        d2=scn.nextDouble();
+        a3=scn.nextDouble();
+        b3=scn.nextDouble();
+        c3=scn.nextDouble();
+        d3=scn.nextDouble();
+        x=((d1*c2-d2*c1)*(b2*c3-b3*c2)-(d2*c3-d3*c2)*(b1*c2-b2*c1))/((a1*c2-a2*c1)*(b2*c3-b3*c2)-(a2*c3-a3*c2)*(b1*c2-b2*c1));
+        y=((d1*c2-d2*c1)*(a2*c3-a3*c2)-(d2*c3-d3*c2)*(a1*c2-a2*c1))/((a2*c3-a3*c2)*(b1*c2-b2*c1)-(a1*c2-a2*c1)*(b2*c3-b3*c2));
+        z=(d1-a1*x-b1*y)/c1;
+        System.out.println();
+
+    }
     public static void main(String[] args){
-        cubic();
+        cubic(1,12,60,48);
     }
 }
