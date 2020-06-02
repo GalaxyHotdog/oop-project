@@ -1,6 +1,8 @@
 import java.util.*;
 public class Matrix {
-    double A[][], B[][], ans[][];
+    double[][] A;
+    double[][] B;
+    double[][] ans;
     int nA,mA,nB,mB,nans,mans;
 
     public void MatrixA(int n1,int m1) {
