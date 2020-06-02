@@ -91,10 +91,16 @@ public class Equation {
         x=((d1*c2-d2*c1)*(b2*c3-b3*c2)-(d2*c3-d3*c2)*(b1*c2-b2*c1))/((a1*c2-a2*c1)*(b2*c3-b3*c2)-(a2*c3-a3*c2)*(b1*c2-b2*c1));
         y=((d1*c2-d2*c1)*(a2*c3-a3*c2)-(d2*c3-d3*c2)*(a1*c2-a2*c1))/((a2*c3-a3*c2)*(b1*c2-b2*c1)-(a1*c2-a2*c1)*(b2*c3-b3*c2));
         z=(d1-a1*x-b1*y)/c1;
-        System.out.println();
+        if(Double.isNaN(x)||Double.isNaN(y)||Double.isNaN(z)){
+            System.out.print("Unsolvable.");
+        }
+
+        System.out.println("x = "+x);
+        System.out.println("y = "+y);
+        System.out.println("z = "+z);
 
     }
     public static void main(String[] args){
-        cubic(1,12,60,48);
+        Ternary_Linear();
     }
 }
