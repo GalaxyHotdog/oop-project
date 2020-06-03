@@ -31,13 +31,13 @@ public class MatrixCalculator {
         if (o == 'A') {
             for (int i = 0; i < nA; i++) {
                 for (int j = 0; j < mA; j++) {
-                    A[i][j] = scn.nextDouble();
+                    A[i][j] = Double.parseDouble(scn.next());
                 }
             }
         } else if (o == 'B') {
             for (int i = 0; i < nB; i++) {
                 for (int j = 0; j < mB; j++) {
-                    B[i][j] = scn.nextDouble();
+                    B[i][j] = Double.parseDouble(scn.next());
                 }
             }
         }
