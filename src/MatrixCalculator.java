@@ -194,12 +194,40 @@ public class MatrixCalculator {
         }
     }
 
+    public double Mat_det(double[][] A) {
+        double[][] tmp;
+        double det = 0;
+
+        if (A.length == 1) {
+            det = A[0][0];
+            return (det);
+        } else if (A.length == 2) {
+            det = ((A[0][0] * A[1][1]) - (A[0][1] * A[1][0]));
+            return (det);
+        } else {
+            for (int i = 0; i < A[1].length; i++) {
+                tmp = new double[A.length - 1][A[1].length - 1];
+                for (int j = 1; j < A.length; j++) {
+                    for (int k = 0; k < A[1].length; k++) {
+                        if (k < i) {
+                            tmp[j - 1][k] = A[j][k];
+                        } else if (k > i) {
+                            tmp[j - 1][k - 1] = A[j][k];
+                        }
+                    }
+                }
+                det += A[0][i] * Math.pow(-1, (double) i) * Mat_det(tmp);
+            }
+        }
+        return (det);
+    }
+
     public static void main(String[] args) {
         MatrixCalculator m = new MatrixCalculator();
         m.MatrixA(3, 3);
         m.MatrixB(4, 4);
         m.GetValue('A');
         //m.GetValue('B');
-        m.PrintMat(m.invert(m.A));
+        System.out.println(m.Mat_det(m.A));
     }
 }
