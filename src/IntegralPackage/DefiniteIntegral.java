@@ -2,32 +2,47 @@ package IntegralPackage;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
+import java.text.DecimalFormat;
+import java.util.Scanner;
 
 /**
  * @创建人 谢铭轩
  * @创建时间 2020-6-1
  * @描述 定积分类，是所有定积分的计算方法
  */
-public abstract class DefiniteIntegral
+public class DefiniteIntegral
 {
-    String expression;  //  计算表达式
-    double upperLimit;  //  积分上限
-    double lowerLimit;  //  积分下限
-    ScriptEngineManager manager = new ScriptEngineManager();
-    ScriptEngine engine = manager.getEngineByName("js");
+    private final String expression;  //  计算表达式
+    private final double upperLimit;  //  积分上限
+    private final double lowerLimit;  //  积分下限
+    private final ScriptEngineManager manager = new ScriptEngineManager();
+    private final ScriptEngine engine = manager.getEngineByName("js");
 
     /**
-     * getPara 方法，用于获取积分上限、积分下限、积分表达式
+     * DefiniteIntegral 构造方法，用于获取积分上限、积分下限、积分表达式
      *
      * @param expression 积分表达式
      * @param upperLimit 积分上限
      * @param lowerLimit 积分下限
      */
-    public void getLimit(String expression, double upperLimit, double lowerLimit)
+    private DefiniteIntegral(String expression, String upperLimit, String lowerLimit) throws Exception
     {
-        this.expression = expression;
-        this.upperLimit = upperLimit;
-        this.lowerLimit = lowerLimit;
+        try
+        {
+            this.expression = expression;
+            Object o1 = engine.eval(upperLimit);
+            Object o2 = engine.eval(lowerLimit);
+            if (o1 instanceof Integer)
+                this.upperLimit = ((Integer) o1).doubleValue();
+            else this.upperLimit = (Double) o1;
+            if (o2 instanceof Integer)
+                this.lowerLimit = ((Integer) o2).doubleValue();
+            else this.lowerLimit = (Double) o2;
+        }
+        catch (Exception e)
+        {
+            throw new Exception("输入异常！");
+        }
     }
 
     /**
@@ -35,11 +50,11 @@ public abstract class DefiniteIntegral
      *
      * @return 计算结果
      */
-    public double calc() throws Exception
+    private double calc() throws Exception
     {
         final double eps = 1e-7;
         double result;
-        if (upperLimit < lowerLimit)
+        if (upperLimit > lowerLimit)
             result = adaptiveSimpson(lowerLimit, upperLimit, eps, simpson(lowerLimit, upperLimit));
         else if (upperLimit == lowerLimit)
             result = 0.0;
@@ -56,7 +71,7 @@ public abstract class DefiniteIntegral
      * @param res 上一次二分法的结果值,第一次使用时应采用 simpson(lowerLimit, upperLimit)
      * @return 最终的积分值
      */
-    public double adaptiveSimpson(double l, double r, double eps, double res) throws Exception
+    private double adaptiveSimpson(double l, double r, double eps, double res) throws Exception
     {
         double mid = (l + r) / 2;
         double leftSum = simpson(l, mid);
@@ -74,7 +89,7 @@ public abstract class DefiniteIntegral
      * @return 积分值
      * @throws Exception 计算错误抛出异常
      */
-    public double simpson(double l, double r) throws Exception
+    private double simpson(double l, double r) throws Exception
     {
         return (r - l) / 6 * (getFunctionValue(l) + getFunctionValue(r) + 4 * getFunctionValue((l + r) / 2));
     }
@@ -86,7 +101,7 @@ public abstract class DefiniteIntegral
      * @return 因变量的值
      * @throws Exception 计算错误则抛出异常
      */
-    public double getFunctionValue(double x0) throws Exception
+    private double getFunctionValue(double x0) throws Exception
     {
         double res;
         try
@@ -96,7 +111,7 @@ public abstract class DefiniteIntegral
         }
         catch (Exception e)
         {
-            throw new Exception("计算错误");
+            throw new Exception("计算错误！");
         }
         return res;
     }
@@ -104,8 +119,42 @@ public abstract class DefiniteIntegral
     /**
      * print 函数，用于打印计算结果
      */
-    public void print() throws Exception
+    private void print() throws Exception
     {
-        System.out.println(calc());
+        DecimalFormat df = new DecimalFormat("0.0000000");
+        System.out.println(df.format(calc()));
+    }
+
+    /**
+     * printHelp 函数，用于打印帮助
+     */
+    private static void printHelp()
+    {
+        System.out.println("在进行计算之前，你需要知道：\n" +
+                "1.所有的函数表达式都必须输入最完整形式，不可以省略乘号\n" +
+                "2.所有的除加、减、乘、除之外的操作，都需要用 JavaScript 中的函数代替。例如 sin(x) 需要用 Math.sin(x) 代替。\n" +
+                "3.积分上、下限都可以出现计算表达式，但是要求同 2");
+    }
+
+    /**
+     * run 静态方法，用于直接执行定积分操作
+     *
+     * @throws Exception 出现异常进行抛出
+     */
+    public static void run() throws Exception
+    {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("输入任意字母以查看帮助，输入 q 跳过该步骤：");
+        String option = scanner.next();
+        if (!option.equals("q")) printHelp();
+        System.out.println("请输入被积函数：");
+        String DefInt = scanner.next();
+        System.out.println("请输入积分下限：");
+        String lowerLimit = scanner.next();
+        System.out.println("请输入积分上限：");
+        String upperLimit = scanner.next();
+        DefiniteIntegral integral = new DefiniteIntegral(DefInt, upperLimit, lowerLimit);
+        System.out.print("积分结果为：");
+        integral.print();
     }
 }

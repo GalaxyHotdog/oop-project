@@ -14,7 +14,7 @@ public class IndefiniteIntegral
      *
      * @return 用户指令
      */
-    public int getkindOfIndefInt()
+    private static int getkindOfIndefInt()
     {
         Scanner scanner = new Scanner(System.in);
         System.out.println("请输入要查寻的基本函数类型：");
@@ -32,7 +32,7 @@ public class IndefiniteIntegral
      *
      * @param option 指令编号
      */
-    public void showIndefiniteIntegral(int option)
+    private static void showIndefiniteIntegral(int option)
     {
         switch (option)
         {
@@ -69,5 +69,13 @@ public class IndefiniteIntegral
                 break;
             default:
         }
+    }
+
+    /**
+     * run 静态方法，用于执行不定积分操作
+     */
+    public static void run()
+    {
+        showIndefiniteIntegral(getkindOfIndefInt());
     }
 }

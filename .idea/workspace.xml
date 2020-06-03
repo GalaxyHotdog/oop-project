@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2f2d185c-35ab-4152-9476-6de441b09da0" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/IntegralPackage/DefiniteIntegral.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IntegralPackage/DefiniteIntegral.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IntegralPackage/IndefiniteIntegral.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IntegralPackage/IndefiniteIntegral.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="谢铭轩 &lt;644332799@qq.com&gt;" />
+        <option value="谢铭轩" />
+      </list>
+    </option>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="谢铭轩的代码分支" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1cih0TcVO968xIWNHMZex5chrRR" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
+  </component>
+  <component name="RunManager">
+    <configuration name="IntegerTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="IntegralPackage.IntegerTest" />
+      <module name="OOP大作业" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="IntegralPackage.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.IntegerTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2f2d185c-35ab-4152-9476-6de441b09da0" name="Default Changelist" comment="" />
+      <created>1591017097895</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1591017097895</updated>
+    </task>
+    <task id="LOCAL-00001" summary="谢铭轩第一次提交&#10;添加：&#10;1.IntegralPackage包&#10;2.IntegralPackage包内添加定积分类，可以实现对定积分的计算操作&#10;3.IntegralPackage包内添加不定积分类，可以实现不定积分的获取操作&#10;注意！本次类的添加没有进行test操作，可能存在后续改进！">
+      <created>1591112451286</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1591112451286</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="谢铭轩第一次提交&#10;添加：&#10;1.IntegralPackage包&#10;2.IntegralPackage包内添加定积分类，可以实现对定积分的计算操作&#10;3.IntegralPackage包内添加不定积分类，可以实现不定积分的获取操作&#10;注意！本次类的添加没有进行test操作，可能存在后续改进！" />
+    <option name="LAST_COMMIT_MESSAGE" value="谢铭轩第一次提交&#10;添加：&#10;1.IntegralPackage包&#10;2.IntegralPackage包内添加定积分类，可以实现对定积分的计算操作&#10;3.IntegralPackage包内添加不定积分类，可以实现不定积分的获取操作&#10;注意！本次类的添加没有进行test操作，可能存在后续改进！" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="651" y="274" key="#Notifications" timestamp="1591017230610">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="651" y="274" key="#Notifications/0.0.1536.824@0.0.1536.824" timestamp="1591017230610" />
+    <state x="249" y="0" key="#Project_Structure" timestamp="1591017213772">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="249" y="0" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1591017213772" />
+    <state x="574" y="117" key="#com.intellij.ide.util.MemberChooser" timestamp="1591153016952">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="574" y="117" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1591153016952" />
+    <state x="367" y="0" key="CommitChangelistDialog2" timestamp="1591112449162">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="367" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1591112449162" />
+    <state width="1493" height="259" key="GridCell.Tab.0.bottom" timestamp="1591176996950">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="259" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1591176996950" />
+    <state width="1493" height="259" key="GridCell.Tab.0.center" timestamp="1591176996949">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="259" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1591176996949" />
+    <state width="1493" height="259" key="GridCell.Tab.0.left" timestamp="1591176996949">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="259" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1591176996949" />
+    <state width="1493" height="259" key="GridCell.Tab.0.right" timestamp="1591176996950">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="259" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1591176996950" />
+    <state width="1493" height="252" key="GridCell.Tab.1.bottom" timestamp="1591175053933">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="252" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1591175053933" />
+    <state width="1493" height="252" key="GridCell.Tab.1.center" timestamp="1591175053933">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="252" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1591175053933" />
+    <state width="1493" height="252" key="GridCell.Tab.1.left" timestamp="1591175053933">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="252" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1591175053933" />
+    <state width="1493" height="252" key="GridCell.Tab.1.right" timestamp="1591175053933">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="252" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1591175053933" />
+    <state x="270" y="0" key="SettingsEditor" timestamp="1591175266700">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="270" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1591175266700" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1591115058983">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1591115058983" />
+    <state x="498" y="146" key="VcsDiffUtil.ChangesDialog" timestamp="1591114456605">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="498" y="146" key="VcsDiffUtil.ChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1591114456605" />
+    <state width="775" height="419" key="XDebugger.FullValuePopup" timestamp="1591155649062">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="775" height="419" key="XDebugger.FullValuePopup/0.0.1536.824@0.0.1536.824" timestamp="1591155649062" />
+    <state x="451" y="199" key="git4idea.merge.GitPullDialog" timestamp="1591175881862">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="451" y="199" key="git4idea.merge.GitPullDialog/0.0.1536.824@0.0.1536.824" timestamp="1591175881862" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1591090231412">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1591090231412" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://C:/Program Files/Java/jdk1.8.0_181/jre/lib/ext/nashorn.jar!/jdk/nashorn/api/scripting/NashornScriptEngine.class</url>
+          <line>446</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://C:/Program Files/Java/jdk1.8.0_181/jre/lib/ext/nashorn.jar!/jdk/nashorn/api/scripting/NashornScriptEngine.class</url>
+          <line>227</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>jar://C:/Program Files/Java/jdk1.8.0_181/jre/lib/ext/nashorn.jar!/jdk/nashorn/api/scripting/NashornScriptEngine.class</url>
+          <line>445</line>
+          <properties class="jdk.nashorn.api.scripting.NashornScriptEngine" method="compileImpl">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="engine.eval(upperLimit)" language="JAVA" />
+      </configuration>
+    </watches-manager>
+  </component>
+</project>
