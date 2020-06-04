@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.Stack;
 
 public class Elementrary {
-    public void calculate(String str) {
+    public void calculate(String str, boolean isRadian) {
         if (str == null || str.length() == 0) {
             System.out.println("Error");
         }
@@ -29,10 +29,52 @@ public class Elementrary {
                         i++;
                     }
                     numStack.push(Math.pow(Double.parseDouble(String.valueOf(beforePra)),Double.parseDouble(String.valueOf(pow))));
-                }else {
+                }
+                else {
                     numStack.push(Double.parseDouble(String.valueOf(beforePra)));
                 }
-            } else {
+            } else if(str.charAt(i)=='c' && str.charAt(i+1)=='o' && str.charAt(i+2)=='s'){
+                i+=3;
+                StringBuilder beforePra = new StringBuilder();
+                while (i < str.length() && (Character.isDigit(str.charAt(i)) || str.charAt(i) == '.')) {
+                    beforePra.append(str.charAt(i));
+                    i++;
+                }
+                double val = Double.parseDouble(String.valueOf(beforePra));
+                if(!isRadian){
+                    val=Math.toRadians(val);
+                }
+                numStack.push(Math.cos(val));
+            }else if(str.charAt(i)=='s' && str.charAt(i+1)=='i' && str.charAt(i+2)=='n'){
+                i+=3;
+                StringBuilder beforePra = new StringBuilder();
+                while (i < str.length() && (Character.isDigit(str.charAt(i)) || str.charAt(i) == '.')) {
+                    beforePra.append(str.charAt(i));
+                    i++;
+                }
+                double val = Double.parseDouble(String.valueOf(beforePra));
+                if(!isRadian){
+                    val=Math.toRadians(val);
+                }
+                numStack.push(Math.sin(val));
+            }else if(str.charAt(i)=='t' && str.charAt(i+1)=='a' && str.charAt(i+2)=='n'){
+                i+=3;
+                StringBuilder beforePra = new StringBuilder();
+                while (i < str.length() && (Character.isDigit(str.charAt(i)) || str.charAt(i) == '.')) {
+                    beforePra.append(str.charAt(i));
+                    i++;
+                }
+                double val = Double.parseDouble(String.valueOf(beforePra));
+                if(!isRadian && val%90==0){
+                    System.out.println("Tangent error: undefined.");
+                    return;
+                }
+                if(!isRadian){
+                    val=Math.toRadians(val);
+                }
+                numStack.push(Math.tan(val));
+            }
+            else {
                 char op = str.charAt(i);
                 if (opStack.isEmpty()) {
                     opStack.push(op);
@@ -103,6 +145,6 @@ public class Elementrary {
     public static void main(String[] args) {
         Elementrary m = new Elementrary();
         Scanner scn = new Scanner(System.in);
-        m.calculate(scn.nextLine());
+        m.calculate(scn.nextLine(),false);
     }
 }
