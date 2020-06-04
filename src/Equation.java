@@ -71,36 +71,35 @@ public class Equation {
             }
         }
     }
-    public static void Ternary_Linear(){
+    public void Linear(){
         Scanner scn = new Scanner(System.in);
-        int i=1;
-        double x,y,z;
-        double a1,b1,c1,d1,a2,b2,c2,d2,a3,b3,c3,d3;
-        a1=Double.parseDouble(scn.next());
-        b1=Double.parseDouble(scn.next());
-        c1=Double.parseDouble(scn.next());
-        d1=Double.parseDouble(scn.next());
-        a2=Double.parseDouble(scn.next());
-        b2=Double.parseDouble(scn.next());
-        c2=Double.parseDouble(scn.next());
-        d2=Double.parseDouble(scn.next());
-        a3=Double.parseDouble(scn.next());
-        b3=Double.parseDouble(scn.next());
-        c3=Double.parseDouble(scn.next());
-        d3=Double.parseDouble(scn.next());
-        x=((d1*c2-d2*c1)*(b2*c3-b3*c2)-(d2*c3-d3*c2)*(b1*c2-b2*c1))/((a1*c2-a2*c1)*(b2*c3-b3*c2)-(a2*c3-a3*c2)*(b1*c2-b2*c1));
-        y=((d1*c2-d2*c1)*(a2*c3-a3*c2)-(d2*c3-d3*c2)*(a1*c2-a2*c1))/((a2*c3-a3*c2)*(b1*c2-b2*c1)-(a1*c2-a2*c1)*(b2*c3-b3*c2));
-        z=(d1-a1*x-b1*y)/c1;
-        if(Double.isNaN(x)||Double.isNaN(y)||Double.isNaN(z)){
-            System.out.print("Unsolvable.");
+        int d = Integer.parseInt(scn.next());
+        MatrixCalculator m = new MatrixCalculator();
+        double x,y,z,det;
+        double[] det_ans = new double[d];
+        double[][] mat_inti = new double [d][d+1];
+        double[][] mat = new double [d][d];
+        for(int i=0;i<d;i++){
+            for(int j=0;j<d+1;j++){
+                mat_inti[i][j]=Double.parseDouble(scn.next());
+                if(j<d){
+                    mat[i][j]=mat_inti[i][j];
+                }
+            }
         }
-
-        System.out.println("x = "+x);
-        System.out.println("y = "+y);
-        System.out.println("z = "+z);
-
+        det=m.Mat_det(mat);
+        for(int i=0;i<d;i++){
+            for(int j=0;j<d;j++){
+                mat[j][i]=mat_inti[j][d];
+            }
+            det_ans[i]=m.Mat_det(mat)/det;
+            System.out.println(det_ans[i]);
+            for(int j=0;j<d;j++){
+                mat[j][i]=mat_inti[j][i];
+            }
+        }
     }
+
     public static void main(String[] args){
-        Ternary_Linear();
     }
 }
