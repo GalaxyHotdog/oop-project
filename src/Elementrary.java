@@ -21,7 +21,17 @@ public class Elementrary {
                     beforePra.append(str.charAt(i));
                     i++;
                 }
-                numStack.push(Double.parseDouble(String.valueOf(beforePra)));
+                if(str.charAt(i)=='^'){
+                    StringBuilder pow = new StringBuilder();
+                    i++;
+                    while (i < str.length() && (Character.isDigit(str.charAt(i)) || str.charAt(i) == '.')) {
+                        pow.append(str.charAt(i));
+                        i++;
+                    }
+                    numStack.push(Math.pow(Double.parseDouble(String.valueOf(beforePra)),Double.parseDouble(String.valueOf(pow))));
+                }else {
+                    numStack.push(Double.parseDouble(String.valueOf(beforePra)));
+                }
             } else {
                 char op = str.charAt(i);
                 if (opStack.isEmpty()) {
