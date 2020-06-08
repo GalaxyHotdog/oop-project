@@ -5,10 +5,9 @@ public class Token
 {
     public String token;
     public int mark;
-    public Token left=null;
-    public Token right=null;
-    public Token operator=null;
-    public Token derivation=null;
+    private Token left=null;
+    private Token right=null;
+    private Token operator=null;
     public Token ( String token, int mark)
     {
         this.token=token;
@@ -178,9 +177,27 @@ public class Token
         }
         return res;
     }
-    public String toString()
-    {
-        String s=token;
-        return s;
+    public String toString(){
+        if(this.mark!=-1){
+            return this.token;
+        }
+        if(this.left==null&&this.right!=null){
+            return this.operator.token+"("+this.right+")";
+        }
+        else {
+            String s="";
+            if(this.left.operator!=null&&this.left.operator.mark<this.operator.mark){
+                s+="("+this.left+")";
+            }
+            else
+                s+=this.left;
+            s+=this.operator.token;
+            if(this.right.operator!=null&&this.right.operator.mark<this.operator.mark||this.operator.token.equals("-")){
+                s+="("+this.right+")";
+            }
+            else
+                s+=this.right;
+            return s;
+        }
     }
 }

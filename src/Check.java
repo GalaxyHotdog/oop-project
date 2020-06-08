@@ -30,7 +30,7 @@ public class Check {
             else
                 return false;
         }
-        public ParenthesesCheck(Vector tokens) throws Exception {
+        private ParenthesesCheck(Vector tokens) throws Exception {
             Stack<String> s = new Stack();
             int         i;
             String      currentChar;
@@ -103,7 +103,7 @@ public class Check {
                     throw new Exception();
             }
         }
-        public GrammarCheck(Vector tokens) throws Exception{
+        private GrammarCheck(Vector tokens) throws Exception{
             beginCheck(tokens);
             endCheck(tokens);
             sequenceCheck(tokens);
