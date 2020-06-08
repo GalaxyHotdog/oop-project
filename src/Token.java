@@ -99,7 +99,10 @@ public class Token
                 x=new Token(new Token(null,this.right,new Token("cos",7)),this.right.derivate(),new Token("*",5));
             }
             else if(this.operator.token.equals("cos")){
-                x=new Token(new Token(null,this.right,new Token("sin",7)),this.right.derivate(),new Token("*",5));
+                x=new Token(new Token(new Token("0",2),new Token(null,this.right,new Token("sin",7)),new Token("-",4)),this.right.derivate(),new Token("*",5));
+            }
+            else if(this.operator.token.equals("tan")){
+                x=new Token(new Token(null,this.right,new Token("sin",7)),new Token(null,this.right,new Token("cos",7)),new Token("/",5)).derivate();
             }
             else if(this.operator.token.equals("ln")){
                 x=new Token(new Token(new Token("1",2),right,new Token("/",5)),this.right.derivate(),new Token("*",5));
@@ -135,7 +138,7 @@ public class Token
         if(this.mark==2){
             if(this.token.equals("e"))
                 res=Math.exp(1);
-            res=Double.valueOf(this.token);
+            else res=Double.valueOf(this.token);
         }
         else if(this.mark==3)
             res=x;
@@ -161,12 +164,17 @@ public class Token
                 if(n==0)throw new Exception();
                 res=Math.log(n);
             }
-            else if(this.operator.token.equals("sin"))
+            else if(this.operator.token.equals("sin")){
                 res=Math.sin(n);
-            else if(this.operator.token.equals("cos"))
+            }
+            else if(this.operator.token.equals("cos")){
                 res=Math.cos(n);
-            else if(this.operator.token.equals("tan"))
+            }
+
+            else if(this.operator.token.equals("tan")){
+                if(n==Math.PI/2)throw new Exception();
                 res=Math.tan(n);
+            }
         }
         return res;
     }

@@ -3,11 +3,11 @@ import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import java.util.*;
 
 public class TestDerivate {
-    enum Cal{
-        c,xa,sin,cos,tan,cot,sec,csc,e_x,a_x,ln,log,arcsin,arccos,arctan,arccot
+    public static void main(String[] args){
+        String arg="e^2x";
+        derviate(arg);
     }
-    public static void main(String[] args) throws Exception {
-        String arg="sin(-2x)";
+    public static void derviate(String arg){
         Vector<Token> s=ToToken(arg);
         System.out.println(s);
         try{
@@ -29,13 +29,17 @@ public class TestDerivate {
             }
             Token.create(s.subList(0,s.size()),true);
             Token exper=s.elementAt(0);
-            System.out.println(exper.derivate().value(60));
+
+            System.out.println((double) Math.round(exper.value((double) 1)*10000)/10000);
+            System.out.println(f(exper));
+
+
+            System.out.println((double) Math.round(exper.derivate().value((double) 1)*10000)/10000);
             System.out.println(f(exper.derivate()));
         }
         catch (Exception e){
             System.out.println(e.toString());
         }
-
     }
     public static String f(Token token){
         if(token.mark!=-1){
@@ -52,7 +56,7 @@ public class TestDerivate {
             else
                 s+=f(token.left);
             s+=token.operator.token;
-            if(token.right.operator!=null&&token.right.operator.mark<token.operator.mark){
+            if(token.right.operator!=null&&token.right.operator.mark<token.operator.mark||token.operator.token.equals("-")){
                 s+="("+f(token.right)+")";
             }
             else
