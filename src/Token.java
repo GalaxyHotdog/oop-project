@@ -3,17 +3,17 @@ import java.util.Timer;
 
 public class Token
 {
-    public String token;
-    public int mark;
-    private Token left=null;
-    private Token right=null;
-    private Token operator=null;
+    public String token;//内容
+    public int mark;//标记表明属性
+    private Token left=null;//左子树
+    private Token right=null;//右子树
+    private Token operator=null;//操作符节点
     public Token ( String token, int mark)
-    {
+    {//表达式
         this.token=token;
         this.mark=mark;
     }
-    public Token(Token left,Token right,Token operator){
+    public Token(Token left,Token right,Token operator){//表达式树
         this.left=left;
         this.right=right;
         this.operator=operator;
@@ -23,21 +23,21 @@ public class Token
             this.token=operator.token+right.token;
         this.mark=-1;
     }
-    public static void create(List tokens,boolean f){
-        if(f==false){
+    public static void create(List tokens,boolean f){//表达式转化成表达式树
+        if(f==false){//f标记为false，说明两边有()，为真，说明两边无()
             tokens.remove(0);
             tokens.remove(tokens.size()-1);
             }
         for (int i = 0; i < tokens.size(); i++) {
             Token x= (Token) tokens.get(i);
-            if(x.mark==7){
+            if(x.mark==7){//函数
                 Token left=null;
                 Token right=null;
-                if(x.token.equals("log")==false){
+                if(x.token.equals("log")==false){//不是log,函数仅有一个参数，参数放在右子树
                     left=null;
                     right=(Token) tokens.get(i+1);
                 }
-                else{
+                else{//是log，log(a)(b)，两个参数
                     left=(Token) tokens.get(i+1);
                     right=(Token) tokens.get(i+2);
                 }
@@ -50,7 +50,7 @@ public class Token
         }
         for (int i = 0; i < tokens.size(); i++) {
             Token x= (Token) tokens.get(i);
-            if(x.mark==6){
+            if(x.mark==6){//^
                 Token left=(Token) tokens.get(i-1);
                 Token right=(Token) tokens.get(i+1);
                 tokens.set(i-1,new Token(left,right,x));
@@ -62,7 +62,7 @@ public class Token
         }
         for (int i = 0; i < tokens.size(); i++) {
             Token x= (Token) tokens.get(i);
-            if(x.mark==5){
+            if(x.mark==5){//*//
                 Token left=(Token) tokens.get(i-1);
                 Token right=(Token) tokens.get(i+1);
                 tokens.set(i-1,new Token(left,right,x));
@@ -74,7 +74,7 @@ public class Token
         }
         for (int i = 0; i < tokens.size(); i++) {
             Token x= (Token) tokens.get(i);
-            if(x.mark==4){
+            if(x.mark==4){//+/-
                 Token left=(Token) tokens.get(i-1);
                 Token right=(Token) tokens.get(i+1);
                 tokens.set(i-1,new Token(left,right,x));
@@ -85,12 +85,12 @@ public class Token
             }
         }
     }
-    public Token derivate(){
+    public Token derivate(){//求导
         Token x=null;
-        if(this.mark==2){
+        if(this.mark==2){//纯数字
             x=new Token("0",2);
         }
-        else if(this.mark==3){
+        else if(this.mark==3){//变量
             x=new Token("1",2);
         }
         else{
@@ -100,13 +100,13 @@ public class Token
             else if(this.operator.token.equals("cos")){
                 x=new Token(new Token(new Token("0",2),new Token(null,this.right,new Token("sin",7)),new Token("-",4)),this.right.derivate(),new Token("*",5));
             }
-            else if(this.operator.token.equals("tan")){
+            else if(this.operator.token.equals("tan")){//tan(x)=sin(x)/cos(x)，在求导
                 x=new Token(new Token(null,this.right,new Token("sin",7)),new Token(null,this.right,new Token("cos",7)),new Token("/",5)).derivate();
             }
             else if(this.operator.token.equals("ln")){
                 x=new Token(new Token(new Token("1",2),right,new Token("/",5)),this.right.derivate(),new Token("*",5));
             }
-            else if(this.operator.token.equals("log")){
+            else if(this.operator.token.equals("log")){//log(a)(b)=ln(a)/ln(b)，再求导
                 x=new Token(new Token(null,right,new Token("ln",7)),new Token(null,left,new Token("ln",7)),new Token("/",5)).derivate();
             }
             else if(this.operator.token.equals("*")){
@@ -124,7 +124,7 @@ public class Token
             else if(this.operator.token.equals("+")||this.operator.token.equals("-")){
                 x=new Token(this.left.derivate(),this.right.derivate(),this.operator);
             }
-            else if(this.operator.token.equals("^")) {
+            else if(this.operator.token.equals("^")) {//a^b=e^(blna)，求导
                 Token lna=new Token(null,left,new Token("ln",7));
                 Token blna=new Token(right,lna,new Token("*",5));
                 x=new Token(new Token(new Token("e",2),blna,new Token("^",6)),blna.derivate(),new Token("*",5));
@@ -132,7 +132,7 @@ public class Token
         }
         return x;
     }
-    public double value(double x) throws Exception {
+    public double value(double x) throws Exception {//递归算表达式树
         double res=0;
         if(this.mark==2){
             if(this.token.equals("e"))

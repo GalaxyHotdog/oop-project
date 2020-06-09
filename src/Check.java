@@ -3,34 +3,33 @@ import java.util.Vector;
 
 public class Check {
     public Check(Vector tokens)throws Exception{
-
         GrammarCheck check1=new GrammarCheck(tokens);
         ParenthesesCheck check2=new ParenthesesCheck(tokens);
     }
     class ParenthesesCheck
     {
-        private boolean isOpenParenthesis( String c )
+        private boolean isOpenParenthesis( String c )//判断(
         {
             if ( c.equals("("))
                 return true;
             else
                 return false;
         }
-        private boolean isClosedParenthesis( String c )
+        private boolean isClosedParenthesis( String c )//判断)
         {
             if ( c.equals(")"))
                 return true;
             else
                 return false;
         }
-        private boolean parenthesesMatch( String open, String closed )
+        private boolean parenthesesMatch( String open, String closed )//匹配(与)
         {
             if ( open.equals("(") && closed.equals(")") )
                 return true;
             else
                 return false;
         }
-        private ParenthesesCheck(Vector tokens) throws Exception {
+        private ParenthesesCheck(Vector tokens) throws Exception {//检查括号匹配
             Stack<String> s = new Stack();
             int         i;
             String      currentChar;
@@ -64,7 +63,7 @@ public class Check {
     }
     class GrammarCheck{
         boolean[][] seq = new boolean[8][8];
-        {
+        {//各种token的排列顺序是否合法，如()不合法,则seq[0][1]=false;
             seq[0][0]=seq[0][2]=seq[0][3]=seq[0][7]=true;seq[0][1]=seq[0][4]=seq[0][5]=seq[0][6]=false;
             seq[1][0]=seq[1][1]=seq[1][4]=seq[1][5]=seq[1][6]=true;seq[1][2]=seq[1][3]=seq[1][7]=false;
             seq[2][1]=seq[2][2]=seq[2][3]=seq[2][4]=seq[2][5]=seq[2][6]=seq[2][7]=true;seq[2][0]=false;
@@ -76,17 +75,17 @@ public class Check {
             
         }
         private void beginCheck( Vector tokens) throws Exception
-        {
+        {//)，*//,^不在头
             int      mark;
             Token    t;
             t=(Token)tokens.elementAt( 0 );
             mark=t.mark;
-            if (mark == 1|| mark == 4||mark == 5||mark ==6) {
+            if (mark == 1||mark == 5||mark ==6) {
                 throw new Exception();
             }
         }
         private void endCheck( Vector tokens) throws Exception
-        {
+        {//(,+/-,*//,^不在尾
             int      mark;
             Token    t;
             t=(Token)tokens.elementAt( tokens.size()-1 );
@@ -95,7 +94,7 @@ public class Check {
                 throw new Exception();
         }
         private void sequenceCheck(Vector tokens) throws Exception
-        {
+        {//检查顺序
             for (int i = 0; i < tokens.size()-1; i++){
                 Token x=(Token)tokens.elementAt(i);
                 Token y=(Token)tokens.elementAt(i+1);

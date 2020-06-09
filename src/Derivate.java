@@ -16,28 +16,28 @@ public class Derivate {
     }
     public Derivate(String arg) throws Exception{
         Vector<Token> s=ToToken(arg);
-        new Check(s);
+        new Check(s);//检查表达式是否合法,不合法抛出异常
         Stack<Token> stack=new Stack();
         Stack<Integer> stack0=new Stack();
         for (int i = 0; i < s.size(); i++) {
             Token x = s.elementAt(i);
-            if (x.mark == 0) {
+            if (x.mark == 0) {//寻找左括号
                 stack.push(x);
                 stack0.push(i);
             }
-            else if (x.mark == 1) {
+            else if (x.mark == 1) {//寻找右括号
                 Token y = stack.pop();
                 Integer m = stack0.pop();
-                Token.create(s.subList(m, i + 1),false);
+                Token.create(s.subList(m, i + 1),false);//处理最近的左右括号间的字符串
                 i = 0;
             }
         }
-        Token.create(s.subList(0,s.size()),true);
-        exper=s.elementAt(0);
+        Token.create(s.subList(0,s.size()),true);//处理余下的表达式
+        exper=s.elementAt(0);//表达式树
 
     }
     public double value(double x) throws Exception{
-        return (double)Math.round(exper.derivate().value(x)*10000)/10000;
+        return (double)Math.round(exper.derivate().value(x)*10000)/10000;//保留小数点后4位
     }
     private static Vector<Token> ToToken(String arg){
         Vector<Token> s=new Vector<>();
@@ -45,7 +45,7 @@ public class Derivate {
         for (int i = 0; i < arg.length(); i++) {
             Token x = null;
             char c=arg.charAt(i);
-            if(c>='0'&&c<='9'){
+            if(c>='0'&&c<='9'){//输入数字
                 int t=i;
                 while(t<arg.length()&&arg.charAt(t)>='0'&&arg.charAt(t)<='9')
                     t++;
@@ -53,27 +53,27 @@ public class Derivate {
 
                 i=t-1;flag=true;
             }
-            else if(c=='x'){
-                if(s.size()!=0&&(s.lastElement().mark==2||s.lastElement().mark==3))
+            else if(c=='x'){//输入变量
+                if(s.size()!=0&&(s.lastElement().mark==2||s.lastElement().mark==3))//变量前有x或数字，加*
                 s.add(new Token("*",5));
                 x=new Token("x",3);
                 flag=true;
             }
 
-            else if(c=='e')
+            else if(c=='e')//e也属于数字
                 x=new Token("e",2);
-            else if(c>='a'&&c<='z'){
+            else if(c>='a'&&c<='z'){//输入函数
                 int t=i;
                 while(t<arg.length()&&arg.charAt(t)>='a'&&arg.charAt(t)<='z'&&arg.charAt(t)!='x')
                     t++;
-                if(s.size()!=0&&(s.lastElement().mark==2||s.lastElement().mark==3))
+                if(s.size()!=0&&(s.lastElement().mark==2||s.lastElement().mark==3))//函数前有x或数字，加*
                     s.add(new Token("*",5));
                 x=new Token(arg.substring(i,t),7);
                 i=t-1;flag=true;
             }
-            else if(c=='+'||c=='-'){
+            else if(c=='+'||c=='-'){//输入运算符
                 x=new Token(String.valueOf(c),4);
-                if(s.lastElement().mark==0||s.lastElement().mark==4||s.lastElement().mark==5||s.lastElement().mark==6) {
+                if(s.lastElement().mark==0||s.lastElement().mark==4||s.lastElement().mark==5||s.lastElement().mark==6) {//  +/-前有(,+/-,*//,自动补0
                     s.add(new Token("0", 2));
                 }
             }
