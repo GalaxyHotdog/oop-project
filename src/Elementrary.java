@@ -32,10 +32,20 @@ public class Elementrary {
                 StringBuilder beforePra = new StringBuilder();
                 StringBuilder pow = new StringBuilder();
                 i++;
+                int kcount = 1;
                 if(str.charAt(i)=='('){
                     i++;
                     StringBuilder str2 = new StringBuilder();
-                    while (i < str.length() && str.charAt(i)!=')') {
+                    while (i < str.length() && kcount>0) {
+                        if(str.charAt(i)=='('){
+                            kcount++;
+                        }
+                        else if(str.charAt(i)==')'){
+                            kcount--;
+                            if(kcount<=0){
+                                break;
+                            }
+                        }
                         str2.append(str.charAt(i));
                         i++;
                     }
