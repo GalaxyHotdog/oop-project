@@ -3,6 +3,7 @@ package Statistics;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
 import static Statistics.MathCalc.*;
 
 /**
@@ -12,8 +13,8 @@ import static Statistics.MathCalc.*;
  */
 public abstract class BivariateStatistics extends StatBase
 {
-    List<Double> listX = new ArrayList<>(); //  x 的计算集合
-    List<Double> listY = new ArrayList<>(); //  y 的计算集合
+    List<Double> X = new ArrayList<>(); //  x 的计算集合
+    List<Double> Y = new ArrayList<>(); //  y 的计算集合
 
     @Override
     void getData()
@@ -39,34 +40,88 @@ public abstract class BivariateStatistics extends StatBase
     {
         for (int i = 1; i <= sizeOfDataList; i++)
         {
-            listX.add(dataListX.get(i));
-            listY.add(dataListY.get(i));
+            X.add(dataListX.get(i));
+            Y.add(dataListY.get(i));
         }
     }
 
     @Override
     void calc()
     {
-        System.out.println("∑(x) = " + getSum(1, listX) +
-                "∑(x^2) = " + getSum(2, listX) +
-                "AVG(x) = " + getAverage(listX) +
-                "σ^2(x) = " + getStdDev("p", listX) +
-                "σ(x) = " + Math.sqrt(getStdDev("p", listX)) +
-                "s^2(x) = " + getStdDev("s", listX) +
-                "s(x) = " + Math.sqrt(getStdDev("s", listX)) +
-                "n = " + getNum(listX) +
-                "∑(y) = " + getSum(1, listY) +
-                "∑(y^2) = " + getSum(2, listY) +
-                "AVG(y) = " + getAverage(listY) +
-                "σ^2(y) = " + getStdDev("p", listY) +
-                "σ(y) = " + Math.sqrt(getStdDev("p", listY)) +
-                "s^2(y) = " + getStdDev("s", listY) +
-                "s(y) = " + Math.sqrt(getStdDev("s", listY)) +
-                "min(x) = " + getMin(listX) +
-                "max(x) = " + getMax(listX) +
-                "min(y) = " + getMin(listY) +
-                "max(y) = " + getMax(listY));
+        System.out.println("∑(x) = " + getSum(X, 1) + "\n" +
+                "∑(x^2) = " + getSum(X, 2) + "\n" +
+                "AVG(x) = " + getAverage(X) + "\n" +
+                "σ^2(x) = " + getStdDev("p", X) + "\n" +
+                "σ(x) = " + Math.sqrt(getStdDev("p", X)) + "\n" +
+                "s^2(x) = " + getStdDev("s", X) + "\n" +
+                "s(x) = " + Math.sqrt(getStdDev("s", X)) + "\n" +
+                "n = " + getNum(X) + "\n" +
+                "∑(y) = " + getSum(Y, 1) + "\n" +
+                "∑(y^2) = " + getSum(Y, 2) + "\n" +
+                "AVG(y) = " + getAverage(Y) + "\n" +
+                "σ^2(y) = " + getStdDev("p", Y) + "\n" +
+                "σ(y) = " + Math.sqrt(getStdDev("p", Y)) + "\n" +
+                "s^2(y) = " + getStdDev("s", Y) + "\n" +
+                "s(y) = " + Math.sqrt(getStdDev("s", Y)) + "\n" +
+                "min(x) = " + getMin(X) + "\n" +
+                "max(x) = " + getMax(X) + "\n" +
+                "min(y) = " + getMin(Y) + "\n" +
+                "max(y) = " + getMax(Y));
     }
 
+    @Override
+    public void run()
+    {
+        {
+            Scanner scanner = new Scanner(System.in);
+            while (true)
+            {
+                System.out.println("请输入要进行的操作：\n" +
+                        "1.输入数据\n" +
+                        "2.查看数据\n" +
+                        "3.修改数据\n" +
+                        "4.计算变量值\n" +
+                        "5.计算回归方程\n" +
+                        "q.退出");
+                String index = scanner.next();
+                switch (index)
+                {
+                    case "q":
+                        return;
+                    case "1":
+                        getData();
+                        dataToCalcArea();
+                        break;
+                    case "2":
+                        showData();
+                        break;
+                    case "3":
+                        changeData();
+                        dataToCalcArea();
+                        break;
+                    case "4":
+                        calc();
+                        break;
+                    case "5":
+                        regressionCalculation();
+                        break;
+                        /*
+                    case "6":
+                        if (isFreqOpen)
+                            System.out.println("已关闭频率开关");
+                        else
+                            System.out.println("已打开频率开关");
+                        changeFreqState();
+                        break;
+                        */
+                    default:
+                }
+            }
+        }
+    }
+
+    /**
+     * regressionCalculation 方法，用于实现回归计算
+     */
     abstract void regressionCalculation();
 }

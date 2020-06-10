@@ -95,17 +95,61 @@ public class UnivariateStatistics extends StatBase
     @Override
     void calc()
     {
-        System.out.println("∑(x) = " + MathCalc.getSum(1, calcArea) +
-                "∑(x^2) = " + MathCalc.getSum(2, calcArea) +
-                "AVG(x) = " + MathCalc.getAverage(calcArea) +
-                "σ^2(x) = " + MathCalc.getStdDev("p", calcArea) +
-                "σ(x) = " + Math.sqrt(MathCalc.getStdDev("p", calcArea)) +
-                "s^2(x) = " + MathCalc.getStdDev("s", calcArea) +
-                "s(x) = " + Math.sqrt(MathCalc.getStdDev("s", calcArea)) +
-                "n = " + MathCalc.getNum(calcArea) +
-                "min(x) = " + MathCalc.getMin(calcArea) +
-                "max(x) = " + MathCalc.getMax(calcArea) +
+        System.out.println("∑(x) = " + MathCalc.getSum(calcArea) + "\n" +
+                "∑(x^2) = " + MathCalc.getSum(calcArea, 2) + "\n" +
+                "AVG(x) = " + MathCalc.getAverage(calcArea) + "\n" +
+                "σ^2(x) = " + MathCalc.getStdDev("p", calcArea) + "\n" +
+                "σ(x) = " + Math.sqrt(MathCalc.getStdDev("p", calcArea)) + "\n" +
+                "s^2(x) = " + MathCalc.getStdDev("s", calcArea) + "\n" +
+                "s(x) = " + Math.sqrt(MathCalc.getStdDev("s", calcArea)) + "\n" +
+                "n = " + MathCalc.getNum(calcArea) + "\n" +
+                "min(x) = " + MathCalc.getMin(calcArea) + "\n" +
+                "max(x) = " + MathCalc.getMax(calcArea) + "\n" +
                 "mid(x) = " + MathCalc.getMid(calcArea)
         );
+    }
+
+    @Override
+    public void run() throws Exception
+    {
+        Scanner scanner = new Scanner(System.in);
+        while (true)
+        {
+            System.out.println("请输入要进行的操作：\n" +
+                    "1.输入数据\n" +
+                    "2.查看数据\n" +
+                    "3.修改数据\n" +
+                    "4.计算对应值\n" +
+                    "5.打开/关闭频率开关\n" +
+                    "q.退出");
+            String index = scanner.next();
+            switch (index)
+            {
+                case "q":
+                    return;
+                case "1":
+                    getData();
+                    dataToCalcArea();
+                    break;
+                case "2":
+                    showData();
+                    break;
+                case "3":
+                    changeData();
+                    dataToCalcArea();
+                    break;
+                case "4":
+                    calc();
+                    break;
+                case "5":
+                    if (isFreqOpen)
+                        System.out.println("已关闭频率开关");
+                    else
+                        System.out.println("已打开频率开关");
+                    changeFreqState();
+                    break;
+                default:
+            }
+        }
     }
 }

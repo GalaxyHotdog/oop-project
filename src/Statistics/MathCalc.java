@@ -16,7 +16,7 @@ public class MathCalc
      * @param list  要求和数组
      * @return 和
      */
-    public static double getSum(int times, List<? extends Number> list)
+    public static double getSum(List<? extends Number> list, int times)
     {
         double sum = 0.0;
         for (Number x : list)
@@ -24,19 +24,41 @@ public class MathCalc
         return sum;
     }
 
+    public static double getSum(List<? extends Number> list)
+    {
+        return getSum(list, 1);
+    }
+
     /**
-     * getSumProduct 方法，用于获取两个列表中的对应元素乘积的和
+     * getSumProduct 方法，用于获取两个列表中的对应元素 n 次方乘积的和
      *
      * @param list1 目标列表 1
+     * @param time1 X 的次数
      * @param list2 目标列表 2
+     * @param time2 Y 的次数
      * @return 和
      */
-    public static double getSumProduct(List<Double> list1, List<Double> list2)
+    public static double getSumProduct(List<Double> list1, int time1, List<Double> list2, int time2)
     {
         double sum = 0.0;
         for (int i = 0; i < list1.size(); i++)
-            sum += (list1.get(i) * list2.get(i));
+            sum += (Math.pow(list1.get(i), time1) * Math.pow(list2.get(i), time2));
         return sum;
+    }
+
+    public static double getSumProduct(List<Double> list1, int time1, List<Double> list2)
+    {
+        return getSumProduct(list1, time1, list2, 1);
+    }
+
+    public static double getSumProduct(List<Double> list1, List<Double> list2, int time2)
+    {
+        return getSumProduct(list1, 1, list2, time2);
+    }
+
+    public static double getSumProduct(List<Double> list1, List<Double> list2)
+    {
+        return getSumProduct(list1, 1, list2, 1);
     }
 
     /**
@@ -58,7 +80,7 @@ public class MathCalc
      */
     public static double getAverage(List<? extends Number> list)
     {
-        return getSum(1, list) / getNum(list);
+        return getSum(list, 1) / getNum(list);
     }
 
     /**
@@ -68,13 +90,18 @@ public class MathCalc
      * @param list  目标列表
      * @return n 阶矩分子
      */
-    public static double getStdDevSum(int times, List<? extends Number> list)
+    public static double getStdDevSum(List<? extends Number> list, int times)
     {
         double sum = 0.0;
         double average = getAverage(list);
         for (Number number : list)
-            sum += Math.pow(sum - average, times);
+            sum += Math.pow((double) number - average, times);
         return sum;
+    }
+
+    public static double getStdDevSum(List<? extends Number> list)
+    {
+        return getStdDevSum(list, 1);
     }
 
     /**
@@ -86,7 +113,7 @@ public class MathCalc
      */
     public static double getStdDev(String option, List<? extends Number> list)
     {
-        double stdDevSum = getStdDevSum(2, list);
+        double stdDevSum = getStdDevSum(list, 2);
         if (option.equals("p"))
             return stdDevSum / getNum(list);
         if (option.equals("s"))

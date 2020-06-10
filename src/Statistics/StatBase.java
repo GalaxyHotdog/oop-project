@@ -55,28 +55,31 @@ public abstract class StatBase
     /**
      * showData 方法，用于打印所有数据信息
      */
-    private void showData()
+    void showData()
     {
         if (this instanceof UnivariateStatistics)
         {
-            if (isFreqOpen) System.out.println(data.toString());
-            else System.out.println(dataListX.toString());
+            if (isFreqOpen)
+                for (int i = 1; i <= data.size(); i++)
+                    System.out.println(i + ". X = " + data.get(i).data + " Freq = " + data.get(i).frequency);
+            else for (int i = 1; i <= dataListX.size(); i++)
+                System.out.println(i + ". X = " + dataListX.get(i));
         }
         else
-            for (int i = 1; i < sizeOfDataList; i++)
+            for (int i = 1; i <= sizeOfDataList; i++)
                 System.out.println(i + ". X:" + dataListX.get(i) + " Y:" + dataListY.get(i));
     }
 
     /**
      * changeData 方法，用于实现修改某个数据的功能
      */
-    private void changeData()
+    void changeData()
     {
         Scanner scanner = new Scanner(System.in);
         int key;
         while (true)
         {
-            System.out.print("请输入要修改的数据编号，输入 q 结束");
+            System.out.print("请输入要修改的数据编号，输入 q 结束: ");
             String option = scanner.next();
             if (option.equals("q"))
                 return;
@@ -134,53 +137,12 @@ public abstract class StatBase
     abstract void dataToCalcArea();
 
     /**
-     * calc 方法，用于实现统计中所有的计算方法
+     * calc 方法，用于实现统计中所有的计算变量方法
      */
     abstract void calc();
 
     /**
      * run 方法，用于实现统计功能
-     *
-     * @throws Exception 可能抛出获取数据的输入异常
      */
-    public void run() throws Exception
-    {
-        Scanner scanner = new Scanner(System.in);
-        while (true)
-        {
-            System.out.println("请输入要进行的操作：\n" +
-                    "1.输入数据\n" +
-                    "2.查看数据\n" +
-                    "3.修改数据\n" +
-                    "4.计算对应值\n" +
-                    "5.打开/关闭频率开关\n" +
-                    "q.退出");
-            String index = scanner.next();
-            switch (index)
-            {
-                case "q":
-                    return;
-                case "1":
-                    getData();
-                    break;
-                case "2":
-                    showData();
-                    break;
-                case "3":
-                    changeData();
-                    break;
-                case "4":
-                    calc();
-                    break;
-                case "5":
-                    if (isFreqOpen)
-                        System.out.println("已关闭频率开关");
-                    else
-                        System.out.println("已打开频率开关");
-                    changeFreqState();
-                    break;
-                default:
-            }
-        }
-    }
+    abstract public void run() throws Exception;
 }
