@@ -1,6 +1,5 @@
-package ChenYu;
-
 import java.util.List;
+import java.util.Timer;
 
 public class Token
 {
@@ -172,6 +171,10 @@ public class Token
             }
 
             else if(this.operator.token.equals("tan")){
+                for (int i = (int)(n/(Math.PI/2)); i <  (int)(n/(Math.PI/2))+1; i++) {
+                    if(i*Math.PI/2==n&&i%2==1)
+                        throw new Exception();
+                }
                 if(n==Math.PI/2)throw new Exception();
                 res=Math.tan(n);
             }

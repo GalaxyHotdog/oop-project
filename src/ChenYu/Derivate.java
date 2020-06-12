@@ -1,15 +1,14 @@
-package ChenYu;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 
 import java.util.*;
 
 public class Derivate {
     private Token exper=null;
     public static void main(String[] args){
-        String arg="xsin(x+e^x*3)*(2+23)";
+        String arg="tan(x)";
         try {
             Derivate x=new Derivate(arg);
-            System.out.println(x.value(2));
-            System.out.println(x);
+            System.out.println(x.value(Math.PI*5/2,0));//对f(x)在x=1处求2阶导
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -36,8 +35,13 @@ public class Derivate {
         exper=s.elementAt(0);//表达式树
 
     }
-    public double value(double x) throws Exception{
-        return (double)Math.round(exper.derivate().value(x)*10000)/10000;//保留小数点后4位
+    public double value(double x,int n) throws Exception{
+        if(n<0)throw new Exception();
+        Token res=exper;
+        for (int i = 0; i < n; i++) {
+            res=res.derivate();
+        }
+        return (double)Math.round(res.value(x)*10000)/10000;//保留小数点后4位
     }
     private static Vector<Token> ToToken(String arg){
         Vector<Token> s=new Vector<>();

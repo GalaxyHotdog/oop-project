@@ -1,5 +1,3 @@
-package ChenYu;
-
 import java.util.Stack;
 import java.util.Vector;
 
@@ -66,7 +64,7 @@ public class Check {
     class GrammarCheck{
         boolean[][] seq = new boolean[8][8];
         {//各种token的排列顺序是否合法，如()不合法,则seq[0][1]=false;
-            seq[0][0]=seq[0][2]=seq[0][3]=seq[0][7]=true;seq[0][1]=seq[0][4]=seq[0][5]=seq[0][6]=false;
+            seq[0][0]=seq[0][2]=seq[0][3]=seq[0][4]=seq[0][7]=true;seq[0][1]=seq[0][5]=seq[0][6]=false;
             seq[1][0]=seq[1][1]=seq[1][4]=seq[1][5]=seq[1][6]=true;seq[1][2]=seq[1][3]=seq[1][7]=false;
             seq[2][1]=seq[2][2]=seq[2][3]=seq[2][4]=seq[2][5]=seq[2][6]=seq[2][7]=true;seq[2][0]=false;
             seq[3][1]=seq[3][3]=seq[3][4]=seq[3][5]=seq[3][6]=true;seq[3][0]=seq[3][2]=seq[3][7]=false;
