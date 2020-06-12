@@ -5,10 +5,10 @@ import java.util.*;
 public class Derivate {
     private Token exper=null;
     public static void main(String[] args){
-        String arg="tan(x)";
+        String arg="x*pi*x";
         try {
             Derivate x=new Derivate(arg);
-            System.out.println(x.value(Math.PI*5/2,0));//对f(x)在x=1处求2阶导
+            System.out.println(x.value(2,0));//对f(x)在x=1处求2阶导
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -43,7 +43,7 @@ public class Derivate {
         }
         return (double)Math.round(res.value(x)*10000)/10000;//保留小数点后4位
     }
-    private static Vector<Token> ToToken(String arg){
+    private static Vector<Token> ToToken(String arg) throws Exception {
         Vector<Token> s=new Vector<>();
         boolean flag=true;
         for (int i = 0; i < arg.length(); i++) {
@@ -63,7 +63,6 @@ public class Derivate {
                 x=new Token("x",3);
                 flag=true;
             }
-
             else if(c=='e')//e也属于数字
                 x=new Token("e",2);
             else if(c>='a'&&c<='z'){//输入函数
@@ -72,7 +71,13 @@ public class Derivate {
                     t++;
                 if(s.size()!=0&&(s.lastElement().mark==2||s.lastElement().mark==3))//函数前有x或数字，加*
                     s.add(new Token("*",5));
+                if(arg.substring(i,t).equals("pi"))
+                    x=new Token(arg.substring(i,t),2);
+                else if(arg.substring(i,t).equals("sin")||arg.substring(i,t).equals("cos")||arg.substring(i,t).equals("tan")||
+                        arg.substring(i,t).equals("log")||arg.substring(i,t).equals("ln"))
                 x=new Token(arg.substring(i,t),7);
+                else
+                    throw new Exception();
                 i=t-1;flag=true;
             }
             else if(c=='+'||c=='-'){//输入运算符

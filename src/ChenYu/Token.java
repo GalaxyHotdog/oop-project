@@ -137,6 +137,8 @@ public class Token
         if(this.mark==2){
             if(this.token.equals("e"))
                 res=Math.exp(1);
+            else if(this.token.equals("pi"))
+                res=Math.PI;
             else res=Double.valueOf(this.token);
         }
         else if(this.mark==3)
