@@ -1,3 +1,5 @@
+package TanHengjie;
+
 import java.util.Scanner;
 
 public class Equation {

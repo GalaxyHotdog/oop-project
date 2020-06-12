@@ -1,7 +1,7 @@
-package Statistics;
+package XieMingxuan.Statistics;
 
 import static java.lang.Math.*;
-import static Statistics.MathCalc.*;
+import static XieMingxuan.Statistics.MathCalc.*;
 
 /**
  * @创建人 谢铭轩
@@ -54,7 +54,7 @@ public class QuadraticFitting extends BivariateStatistics
     }
 
     //  *************************************************************************************
-    //  以下代码为 default 包中 MatrixCalculator 类的代码
+    //  以下代码为 default 包中 TanHengjie.MatrixCalculator 类的代码
     //  由于不能进行引用因此直接复制
     //  版权所有 @HengJie
     public double[][] Mat_mul(double[][] A, double[][] B)

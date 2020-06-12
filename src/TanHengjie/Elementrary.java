@@ -1,4 +1,5 @@
-import javax.naming.NameNotFoundException;
+package TanHengjie;
+
 import java.util.Scanner;
 import java.util.Stack;
 
