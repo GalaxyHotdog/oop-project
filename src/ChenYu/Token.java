@@ -1,3 +1,5 @@
+package ChenYu;
+
 import java.util.List;
 import java.util.Timer;
 
@@ -32,15 +34,7 @@ public class Token
             Token x= (Token) tokens.get(i);
             if(x.mark==7){//函数
                 Token left=null;
-                Token right=null;
-                if(x.token.equals("log")==false){//不是log,函数仅有一个参数，参数放在右子树
-                    left=null;
-                    right=(Token) tokens.get(i+1);
-                }
-                else{//是log，log(a)(b)，两个参数
-                    left=(Token) tokens.get(i+1);
-                    right=(Token) tokens.get(i+2);
-                }
+                Token right=(Token) tokens.get(i+1);
                 tokens.set(i,new Token(left,right,x));
                 tokens.remove(x);
                 tokens.remove(left);
@@ -107,7 +101,7 @@ public class Token
                 x=new Token(new Token(new Token("1",2),right,new Token("/",5)),this.right.derivate(),new Token("*",5));
             }
             else if(this.operator.token.equals("log")){//log(a)(b)=ln(a)/ln(b)，再求导
-                x=new Token(new Token(null,right,new Token("ln",7)),new Token(null,left,new Token("ln",7)),new Token("/",5)).derivate();
+                x=new Token(new Token(null,right,new Token("ln",7)),new Token(null,new Token("10",2),new Token("ln",7)),new Token("/",5)).derivate();
             }
             else if(this.operator.token.equals("*")){
                 Token left=new Token(this.left.derivate(),this.right,new Token("*",5));
@@ -164,6 +158,10 @@ public class Token
             else if(this.operator.token.equals("ln")){
                 if(n==0)throw new Exception();
                 res=Math.log(n);
+            }
+            else if(this.operator.token.equals("log")){
+                if(n==0)throw new Exception();
+                res=Math.log10(n);
             }
             else if(this.operator.token.equals("sin")){
                 res=Math.sin(n);

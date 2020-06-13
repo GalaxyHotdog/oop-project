@@ -78,4 +78,50 @@ public class IndefiniteIntegral
     {
         showIndefiniteIntegral(getkindOfIndefInt());
     }
+
+    /**
+     * 适应图形界面的 run 方法,用于查询对应的不定积分
+     *
+     * @param option 需要查询的类型
+     *               option==1 表示查询幂函数
+     *               option==2 表示查询指数函数
+     *               option==3 表示查询对数函数
+     *               option==4 表示查询三角函数
+     *               option==5 表示查询反三角函数
+     *               option==6 表示查询常数函数
+     * @return 不定积分字符串表达
+     */
+    public static String run(int option)
+    {
+        switch (option)
+        {
+            case 1:
+                return "∫(x^a)dx=1/(a+1)*x^(a+1)+C,a!=-1\n" +
+                        "∫(x^a)dx=ln|x|+C,a=-1";
+            case 2:
+                return "∫(a^x)dx=1/ln(a)*a^x+C\n" +
+                        "∫(e^x)dx=e^x+C";
+            case 3:
+                return "∫log(a)(x)dx=xlog(a)(x)-xlog(a)(e)+C\n" +
+                        "∫ln(x)dx=xln(x)-x+C";
+            case 4:
+                return "∫sin(x)dx=-cos(x)+C\n" +
+                        "∫cos(x)dx=six(x)+C\n" +
+                        "∫tan(x)dx=-ln|cos(x)|+C\n" +
+                        "∫cot(x)dx=ln|sin(x)|+C\n" +
+                        "∫sec(x)dx=ln|sec(x)+tan(x)|+C=1/2*ln|(1+sin(x))/(1-sin(x))|+C\n" +
+                        "∫csc(x)dx=ln|csc(x)-cot(x)|+C=ln|tan(x/2)|+C";
+            case 5:
+                return "∫arcsin(x)dx=xarcsin(x)+sqrt(1-x^2)+C\n" +
+                        "∫arccos(x)dx=xarccos(x)-sqrt(1-x^2)+C\n" +
+                        "∫arctan(x)dx=xarctan(x)-1/2*ln(1+x^2)+C\n" +
+                        "∫arccot(x)dx=xarccot(x)+1/2*ln(1+x^2)+C\n" +
+                        "∫arcsec(x)dx=xarcsec(x)-ln(x+sqrt(x^2-1))+C\n" +
+                        "∫arccsc(x)dx=xarccsc(x)+ln(x+sqrt(x^2-1))+C";
+            case 6:
+                return "∫Rdx=Rx+C";
+            default:
+        }
+        return null;
+    }
 }

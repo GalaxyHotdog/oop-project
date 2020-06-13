@@ -22,8 +22,8 @@ class DataAndFreq
 public abstract class StatBase
 {
     protected static boolean isFreqOpen = false;                    // 标志频率开关开启或关闭
-    protected Map<Integer, Double> dataListX = new HashMap<>();     // 不包含频率的数据集合 x
-    protected Map<Integer, Double> dataListY = new HashMap<>();     // 不包含频率的数据集合 y
+    protected static Map<Integer, Double> dataListX = new HashMap<>();     // 不包含频率的数据集合 x
+    protected static Map<Integer, Double> dataListY = new HashMap<>();     // 不包含频率的数据集合 y
     protected int sizeOfDataList = dataListX.size();                // 不包含频率的数据集 x 的元素个数
     protected Map<Integer, DataAndFreq> data = new HashMap<>();     // 包含频率的数据集合
     protected int sizeOfData = data.size();                         // 包含频率的数据集的元素个数

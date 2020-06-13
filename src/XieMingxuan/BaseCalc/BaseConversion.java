@@ -219,4 +219,43 @@ public class BaseConversion
                 System.out.println("十六进制");
         }
     }
+
+    /**
+     * 适应图形界面的 run 方法
+     *
+     * @param number  要转换的数值
+     * @param oldType 被转化时的进制
+     * @param newType 转化后的进制
+     * @return 转化后的值
+     */
+    public static String run(String number, int oldType, int newType)
+    {
+        String temp = "";
+        switch (oldType)
+        {
+            case 2:
+                temp = BinToDec(number);
+                break;
+            case 8:
+                temp = OctToDec(number);
+                break;
+            case 10:
+                temp = number;
+                break;
+            case 16:
+                temp = HexToDec(number);
+        }
+        switch (newType)
+        {
+            case 2:
+                return DecToBin(temp);
+            case 8:
+                return DecToOct(temp);
+            case 10:
+                return DecToDec(temp);
+            case 16:
+                return DecToHex(temp);
+        }
+        return null;
+    }
 }

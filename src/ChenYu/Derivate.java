@@ -1,3 +1,6 @@
+package ChenYu;
+
+import ChenYu.Check;
 import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 
 import java.util.*;
@@ -5,13 +8,15 @@ import java.util.*;
 public class Derivate {
     private Token exper=null;
     public static void main(String[] args){
-        String arg="x*pi*x";
         try {
-            Derivate x=new Derivate(arg);
-            System.out.println(x.value(2,0));//对f(x)在x=1处求2阶导
+            System.out.println(Derivate.run("20xlog(x)",10,0));
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public static String run(String arg,int x,int n) throws Exception {
+        Derivate s=new Derivate(arg);
+        return String.valueOf(s.value(x,n));
     }
     public Derivate(String arg) throws Exception{
         Vector<Token> s=ToToken(arg);
@@ -41,7 +46,7 @@ public class Derivate {
         for (int i = 0; i < n; i++) {
             res=res.derivate();
         }
-        return (double)Math.round(res.value(x)*10000)/10000;//保留小数点后4位
+        return res.value(x);//保留小数点后4位
     }
     private static Vector<Token> ToToken(String arg) throws Exception {
         Vector<Token> s=new Vector<>();
@@ -49,9 +54,9 @@ public class Derivate {
         for (int i = 0; i < arg.length(); i++) {
             Token x = null;
             char c=arg.charAt(i);
-            if(c>='0'&&c<='9'){//输入数字
+            if(c>='0'&&c<='9'||c=='.'){//输入数字
                 int t=i;
-                while(t<arg.length()&&arg.charAt(t)>='0'&&arg.charAt(t)<='9')
+                while(t<arg.length()&&(arg.charAt(t)>='0'&&arg.charAt(t)<='9'||arg.charAt(t)=='.'))
                     t++;
                 x=new Token(arg.substring(i,t),2);
 
@@ -60,6 +65,7 @@ public class Derivate {
             else if(c=='x'){//输入变量
                 if(s.size()!=0&&(s.lastElement().mark==2||s.lastElement().mark==3))//变量前有x或数字，加*
                 s.add(new Token("*",5));
+
                 x=new Token("x",3);
                 flag=true;
             }
@@ -75,7 +81,7 @@ public class Derivate {
                     x=new Token(arg.substring(i,t),2);
                 else if(arg.substring(i,t).equals("sin")||arg.substring(i,t).equals("cos")||arg.substring(i,t).equals("tan")||
                         arg.substring(i,t).equals("log")||arg.substring(i,t).equals("ln"))
-                x=new Token(arg.substring(i,t),7);
+                    x=new Token(arg.substring(i,t),7);
                 else
                     throw new Exception();
                 i=t-1;flag=true;
@@ -90,8 +96,19 @@ public class Derivate {
                 x=new Token(String.valueOf(c),5);
             else if(c=='^')
                 x=new Token(String.valueOf(c),6);
-            else if(c=='(')
-                x=new Token("(",0);
+            else if(c=='('){
+                if(s.lastElement().token.equals("sin")||s.lastElement().token.equals("cos")||s.lastElement().token.equals("tan"))
+                    {
+                        s.add(new Token("(",0));
+                        s.add(new Token("pi",2));
+                        s.add(new Token("/",5));
+                        s.add(new Token("180",2));
+                        s.add(new Token("*",5));
+                    }
+                else
+                    x=new Token("(",0);
+            }
+
             else if(c==')')
                 x=new Token(")",1);
             if(x!=null){

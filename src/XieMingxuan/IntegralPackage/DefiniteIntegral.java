@@ -157,4 +157,31 @@ public class DefiniteIntegral
         System.out.print("积分结果为：");
         integral.print();
     }
+
+    /**
+     * 适应图形界面的 run 方法,直接返回计算结果值
+     * @param expression 积分表达式
+     * @param upperLimit 积分上限
+     * @param lowerLimit 积分下限
+     * @return 计算结果
+     * @throws Exception 计算错误抛出异常
+     */
+    public static String run(String expression, String upperLimit, String lowerLimit) throws Exception
+    {
+        if (expression.contains("^")) return "表达式中含有非法字符 ^ ,请将其改为 Math.pow() 形式重新输入";
+
+        expression = expression.replace("sin", "Math.sin");
+        expression = expression.replace("cos", "Math.cos");
+        expression = expression.replace("tan", "Math.tan");
+        expression = expression.replace("e", "Math.e");
+        expression = expression.replace("π", "Math.pi");
+        expression = expression.replace("log(", "Math.log(10,");
+        expression = expression.replace("ln", "Math.log");
+        expression = expression.replace("×", "*");
+        expression = expression.replace("÷", "/");
+
+        DefiniteIntegral integral = new DefiniteIntegral(expression, upperLimit, lowerLimit);
+        DecimalFormat df = new DecimalFormat("0.0000000");
+        return df.format(integral.calc());
+    }
 }

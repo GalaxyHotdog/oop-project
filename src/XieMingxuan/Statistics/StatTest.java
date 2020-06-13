@@ -22,7 +22,7 @@ public class StatTest
             String option = scanner.next();
             if (option.equals("q")) return;
             if (option.equals("1")) new UnivariateStatistics().run();
-            if (option.equals("2")) new linearRegression().run();
+            if (option.equals("2")) new LinearRegression().run();
             if (option.equals("3")) new QuadraticFitting().run();
         }
     }

@@ -152,4 +152,28 @@ public class UnivariateStatistics extends StatBase
             }
         }
     }
+
+    /**
+     * 适应图形界面的 run 方法
+     * @param dataList String 类型的 data 列表
+     * @return 计算后的结果
+     */
+    public static String run(String dataList)
+    {
+        String[] list_Strings = dataList.split(" ");
+        List<Double> calcArea = new ArrayList<>();
+        for (String s : list_Strings)
+            calcArea.add(Double.parseDouble(s));
+        return "∑(x) = " + MathCalc.getSum(calcArea) + "\n" +
+                "∑(x^2) = " + MathCalc.getSum(calcArea, 2) + "\n" +
+                "AVG(x) = " + MathCalc.getAverage(calcArea) + "\n" +
+                "σ^2(x) = " + MathCalc.getStdDev("p", calcArea) + "\n" +
+                "σ(x) = " + Math.sqrt(MathCalc.getStdDev("p", calcArea)) + "\n" +
+                "s^2(x) = " + MathCalc.getStdDev("s", calcArea) + "\n" +
+                "s(x) = " + Math.sqrt(MathCalc.getStdDev("s", calcArea)) + "\n" +
+                "n = " + MathCalc.getNum(calcArea) + "\n" +
+                "min(x) = " + MathCalc.getMin(calcArea) + "\n" +
+                "max(x) = " + MathCalc.getMax(calcArea) + "\n" +
+                "mid(x) = " + MathCalc.getMid(calcArea);
+    }
 }
