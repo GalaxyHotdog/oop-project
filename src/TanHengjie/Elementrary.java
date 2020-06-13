@@ -28,7 +28,15 @@ public class Elementrary {
 
                 numStack.push(Double.parseDouble(String.valueOf(beforePra)));
 
-            } else if(i<str.length() && str.charAt(i)=='^'){
+            }else if(i<str.length() && str.charAt(i)=='π'){
+                numStack.push(Math.PI);
+                i++;
+            }
+            else if(i<str.length() && str.charAt(i)=='e'){
+                numStack.push(2.71828182846);
+                i++;
+            }
+            else if(i<str.length() && str.charAt(i)=='^'){
                 double tobe = numStack.pop();
                 StringBuilder beforePra = new StringBuilder();
                 StringBuilder pow = new StringBuilder();
@@ -53,11 +61,185 @@ public class Elementrary {
                     i++;
                     numStack.push(Math.pow(tobe,calculate(str2.toString(),isRadian)));
                 }else {
-                    while (i < str.length() && (Character.isDigit(str.charAt(i)) || str.charAt(i) == '.')) {
+                    while (i < str.length() && (Character.isDigit(str.charAt(i)) || str.charAt(i) == '.' || str.charAt(i)=='e'|| str.charAt(i)=='π')) {
+                        if(str.charAt(i)=='π'){
+                            pow.append(str.charAt(i));
+                            i++;
+                            break;
+                        }
+                        else if(str.charAt(i) == 'e'){
+                            pow.append(str.charAt(i));
+                            i++;
+                            break;
+                        }
                         pow.append(str.charAt(i));
                         i++;
                     }
-                    numStack.push(Math.pow(tobe, Double.parseDouble(String.valueOf(pow))));
+                    numStack.push(Math.pow(tobe, this.calculate(pow.toString(),isRadian)));
+                }
+            }
+            else if(str.charAt(i)=='!'){
+                i++;
+                double frac = numStack.pop();
+                double push_val=1;
+                if(frac%1!=0){
+                    System.out.println("Fraction must be int.");
+                    return NaN;
+                }
+                int frac_=(int)frac;
+                for(int k=1;k<=frac;k++){
+                    push_val*=(double)k;
+                }
+                numStack.push((double)push_val);
+            }
+            else if(str.charAt(i)=='m' && str.charAt(i+1)=='o' && str.charAt(i+2)=='d'){
+                i+=3;
+                if(str.charAt(i)=='('){
+                    i++;
+                    int kcount = 1;
+                    StringBuilder str2 = new StringBuilder();
+                    while (i < str.length() && kcount>0) {
+                        if(str.charAt(i)=='('){
+                            kcount++;
+                        }
+                        else if(str.charAt(i)==')'){
+                            kcount--;
+                            if(kcount<=0){
+                                break;
+                            }
+                        }
+                        str2.append(str.charAt(i));
+                        i++;
+                    }
+                    i++;
+                    double val = calculate(str2.toString(),isRadian);
+                    double push_val = numStack.pop()%val;
+                    if(Math.abs(push_val)<1E-10){
+                        push_val=0;
+                    }
+                    numStack.push(push_val);
+                }else {
+                    StringBuilder beforePra = new StringBuilder();
+                    while (i < str.length() && (Character.isDigit(str.charAt(i)) || str.charAt(i) == '.' || str.charAt(i) == 'π' || str.charAt(i) == 'e')) {
+                        if(str.charAt(i)=='π'){
+                            beforePra.append(str.charAt(i));
+                            i++;
+                            break;
+                        }
+                        else if(str.charAt(i) == 'e'){
+                            beforePra.append(str.charAt(i));
+                            i++;
+                            break;
+                        }
+                        beforePra.append(str.charAt(i));
+                        i++;
+                    }
+                    double val = this.calculate(beforePra.toString(),isRadian);
+                    double push_val = numStack.pop()%val;
+                    if(Math.abs(push_val)<1E-10){
+                        push_val=0;
+                    }
+                    numStack.push(push_val);
+                }
+            }
+            else if(str.charAt(i)=='l' && str.charAt(i+1)=='n'){
+                i+=2;
+                if(str.charAt(i)=='('){
+                    i++;
+                    int kcount = 1;
+                    StringBuilder str2 = new StringBuilder();
+                    while (i < str.length() && kcount>0) {
+                        if(str.charAt(i)=='('){
+                            kcount++;
+                        }
+                        else if(str.charAt(i)==')'){
+                            kcount--;
+                            if(kcount<=0){
+                                break;
+                            }
+                        }
+                        str2.append(str.charAt(i));
+                        i++;
+                    }
+                    i++;
+                    double val = calculate(str2.toString(),isRadian);
+                    double push_val = Math.log(val);
+                    if(Math.abs(push_val)<1E-10){
+                        push_val=0;
+                    }
+                    numStack.push(push_val);
+                }else {
+                    StringBuilder beforePra = new StringBuilder();
+                    while (i < str.length() && (Character.isDigit(str.charAt(i)) || str.charAt(i) == '.' || str.charAt(i) == 'π' || str.charAt(i) == 'e')) {
+                        if(str.charAt(i)=='π'){
+                            beforePra.append(str.charAt(i));
+                            i++;
+                            break;
+                        }
+                        else if(str.charAt(i) == 'e'){
+                            beforePra.append(str.charAt(i));
+                            i++;
+                            break;
+                        }
+                        beforePra.append(str.charAt(i));
+                        i++;
+                    }
+                    double val = this.calculate(beforePra.toString(),isRadian);
+                    double push_val = Math.log(val);
+                    if(Math.abs(push_val)<1E-10){
+                        push_val=0;
+                    }
+                    numStack.push(push_val);
+                }
+            }
+            else if(str.charAt(i)=='l' && str.charAt(i+1)=='o' && str.charAt(i+2)=='g'){
+                i+=3;
+                if(str.charAt(i)=='('){
+                    i++;
+                    int kcount = 1;
+                    StringBuilder str2 = new StringBuilder();
+                    while (i < str.length() && kcount>0) {
+                        if(str.charAt(i)=='('){
+                            kcount++;
+                        }
+                        else if(str.charAt(i)==')'){
+                            kcount--;
+                            if(kcount<=0){
+                                break;
+                            }
+                        }
+                        str2.append(str.charAt(i));
+                        i++;
+                    }
+                    i++;
+                    double val = calculate(str2.toString(),isRadian);
+                    double push_val = Math.log(val)/Math.log(10);
+                    if(Math.abs(push_val)<1E-10){
+                        push_val=0;
+                    }
+                    numStack.push(push_val);
+                }else {
+                    StringBuilder beforePra = new StringBuilder();
+                    while (i < str.length() && (Character.isDigit(str.charAt(i)) || str.charAt(i) == '.' || str.charAt(i) == 'π' || str.charAt(i) == 'e')) {
+                        if(str.charAt(i)=='π'){
+                            beforePra.append(str.charAt(i));
+                            i++;
+                            break;
+                        }
+                        else if(str.charAt(i) == 'e'){
+                            beforePra.append(str.charAt(i));
+                            i++;
+                            break;
+                        }
+                        beforePra.append(str.charAt(i));
+                        i++;
+                    }
+                    double val = this.calculate(beforePra.toString(),isRadian);
+                    double push_val = Math.log(val)/Math.log(10);
+                    if(Math.abs(push_val)<1E-10){
+                        push_val=0;
+                    }
+                    numStack.push(push_val);
                 }
             }
             else if(str.charAt(i)=='c' && str.charAt(i+1)=='o' && str.charAt(i+2)=='s'){
@@ -85,22 +267,32 @@ public class Elementrary {
                         val = Math.toRadians(val);
                     }
                     double push_val = Math.cos(val);
-                    if(push_val<1E-10){
+                    if(Math.abs(push_val)<1E-10){
                         push_val=0;
                     }
                     numStack.push(push_val);
                 }else {
                     StringBuilder beforePra = new StringBuilder();
-                    while (i < str.length() && (Character.isDigit(str.charAt(i)) || str.charAt(i) == '.')) {
+                    while (i < str.length() && (Character.isDigit(str.charAt(i)) || str.charAt(i) == '.' || str.charAt(i) == 'π' || str.charAt(i) == 'e')) {
+                        if(str.charAt(i)=='π'){
+                            beforePra.append(str.charAt(i));
+                            i++;
+                            break;
+                        }
+                        else if(str.charAt(i) == 'e'){
+                            beforePra.append(str.charAt(i));
+                            i++;
+                            break;
+                        }
                         beforePra.append(str.charAt(i));
                         i++;
                     }
-                    double val = Double.parseDouble(String.valueOf(beforePra));
+                    double val = this.calculate(beforePra.toString(),isRadian);
                     if (!isRadian) {
                         val = Math.toRadians(val);
                     }
                     double push_val = Math.cos(val);
-                    if(push_val<1E-10){
+                    if(Math.abs(push_val)<1E-10){
                         push_val=0;
                     }
                     numStack.push(push_val);
@@ -130,22 +322,32 @@ public class Elementrary {
                         val = Math.toRadians(val);
                     }
                     double push_val = Math.sin(val);
-                    if(push_val<1E-10){
+                    if(Math.abs(push_val)<1E-10){
                         push_val=0;
                     }
                     numStack.push(push_val);
                 }else {
                     StringBuilder beforePra = new StringBuilder();
-                    while (i < str.length() && (Character.isDigit(str.charAt(i)) || str.charAt(i) == '.')) {
+                    while (i < str.length() && (Character.isDigit(str.charAt(i)) || str.charAt(i) == '.' || str.charAt(i) == 'π' || str.charAt(i) == 'e')) {
+                        if(str.charAt(i)=='π'){
+                            beforePra.append(str.charAt(i));
+                            i++;
+                            break;
+                        }
+                        else if(str.charAt(i) == 'e'){
+                            beforePra.append(str.charAt(i));
+                            i++;
+                            break;
+                        }
                         beforePra.append(str.charAt(i));
                         i++;
                     }
-                    double val = Double.parseDouble(String.valueOf(beforePra));
+                    double val = this.calculate(beforePra.toString(),isRadian);
                     if (!isRadian) {
                         val = Math.toRadians(val);
                     }
                     double push_val = Math.sin(val);
-                    if(push_val<1E-10){
+                    if(Math.abs(push_val)<1E-10){
                         push_val=0;
                     }
                     numStack.push(push_val);
@@ -179,17 +381,27 @@ public class Elementrary {
                         return NaN;
                     }
                     double push_val = Math.tan(val);
-                    if(push_val<1E-10){
+                    if(Math.abs(push_val)<1E-10){
                         push_val=0;
                     }
                     numStack.push(push_val);
                 }else {
                     StringBuilder beforePra = new StringBuilder();
-                    while (i < str.length() && (Character.isDigit(str.charAt(i)) || str.charAt(i) == '.')) {
+                    while (i < str.length() && (Character.isDigit(str.charAt(i)) || str.charAt(i) == '.' || str.charAt(i) == 'π' || str.charAt(i) == 'e')) {
+                        if(str.charAt(i)=='π'){
+                            beforePra.append(str.charAt(i));
+                            i++;
+                            break;
+                        }
+                        else if(str.charAt(i) == 'e'){
+                            beforePra.append(str.charAt(i));
+                            i++;
+                            break;
+                        }
                         beforePra.append(str.charAt(i));
                         i++;
                     }
-                    double val = Double.parseDouble(String.valueOf(beforePra));
+                    double val = this.calculate(beforePra.toString(),isRadian);
                     if (!isRadian) {
                         val = Math.toRadians(val);
                     }
@@ -198,7 +410,7 @@ public class Elementrary {
                         return NaN;
                     }
                     double push_val = Math.tan(val);
-                    if(push_val<1E-10){
+                    if(Math.abs(push_val)<1E-10){
                         push_val=0;
                     }
                     numStack.push(push_val);
