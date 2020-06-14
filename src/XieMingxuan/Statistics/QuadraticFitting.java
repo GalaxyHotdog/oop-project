@@ -43,11 +43,21 @@ public class QuadraticFitting extends BivariateStatistics
     /**
      * getSumOfSqrRes 方法，用于获取残差平方和
      *
-     * @param a 二次项系数
-     * @param b 一次项系数
-     * @param c 常数项
+     * @param a         二次项系数
+     * @param b         一次项系数
+     * @param c         常数项
+     * @param dataListX X数据列表
+     * @param dataListY Y数据列表
      * @return 残差平方和
      */
+    private static double getSumOfSqrRes(double a, double b, double c, List<Double> dataListX, List<Double> dataListY)
+    {
+        double sum = 0.0;
+        for (int i = 0; i < dataListX.size(); i++)
+            sum += pow((dataListY.get(i) - a * pow(dataListX.get(i), 2) - b * dataListX.get(i) - c), 2);
+        return sum;
+    }
+
     private static double getSumOfSqrRes(double a, double b, double c)
     {
         double sum = 0.0;
@@ -173,7 +183,7 @@ public class QuadraticFitting extends BivariateStatistics
         String[] list_Strings = dataList.split(" ");
         List<Double> X = new ArrayList<>();
         List<Double> Y = new ArrayList<>();
-        for (int i = 0; i < list_Strings.length; )
+        for (int i = 0; i < list_Strings.length;)
         {
             X.add(Double.parseDouble(list_Strings[i]));
             i++;
@@ -217,7 +227,7 @@ public class QuadraticFitting extends BivariateStatistics
             a = ans[2][0];
             b = ans[1][0];
             c = ans[0][0];
-            r = (getSum(Y, 2) - getSumOfSqrRes(a, b, c)) / getSum(Y, 2);
+            r = (getSum(Y, 2) - getSumOfSqrRes(a, b, c, X, Y)) / getSum(Y, 2);
 
             return "y = Ax^2 + Bx + C:\n" +
                     "A = " + a + "\n" +
