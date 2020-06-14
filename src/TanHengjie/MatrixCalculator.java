@@ -1,4 +1,4 @@
-package TanHengJie;
+package TanHengjie;
 
 import java.util.*;
 
@@ -77,7 +77,7 @@ public class MatrixCalculator {
             }
             return PrintMat(ans);
         }
-        return "Can't be multiply.";
+        return "Invalid.";
     }
 
     public String Mat_add(double[][] A, double[][] B) {
@@ -92,7 +92,7 @@ public class MatrixCalculator {
             }
             return PrintMat(ans);
         }
-        return "Can't be add.";
+        return "Invalid.";
     }
 
     public String Mat_minus(double[][] A, double[][] B) {
@@ -107,7 +107,7 @@ public class MatrixCalculator {
             }
             return PrintMat(ans);
         }
-        return "Can't be minus.";
+        return "Invalid.";
     }
 
     public String Mat_tranverse() {

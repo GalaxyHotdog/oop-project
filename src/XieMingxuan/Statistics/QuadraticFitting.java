@@ -1,10 +1,10 @@
-package XieMingXuan.Statistics;
+package XieMingxuan.Statistics;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Math.*;
-import static XieMingXuan.Statistics.MathCalc.*;
+import static XieMingxuan.Statistics.MathCalc.*;
 
 /**
  * @创建人 谢铭轩

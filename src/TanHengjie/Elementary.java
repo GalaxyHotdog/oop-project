@@ -1,4 +1,4 @@
-package TanHengJie;
+package TanHengjie;
 
 import java.util.Scanner;
 import java.util.Stack;
@@ -6,14 +6,15 @@ import java.util.Stack;
 import static java.lang.Double.NaN;
 
 public class Elementary {
+    private boolean error;
     public double calculate(String str, boolean isRadian) {
         if (str == null || str.length() == 0) {
-            System.out.println("Error");
+            this.error = false;
         }
         assert str != null;
         str = str.trim().replaceAll("\\s+", "");
         if (str.length() == 0) {
-            System.out.println("Error");
+            this.error = false;
         }
         Stack<Character> opStack = new Stack<>();
         Stack<Double> numStack = new Stack<>();
@@ -83,7 +84,7 @@ public class Elementary {
                 double frac = numStack.pop();
                 double push_val=1;
                 if(frac%1!=0){
-                    System.out.println("Fraction must be int.");
+                    this.error = false;
                     return NaN;
                 }
                 int frac_=(int)frac;
@@ -377,7 +378,7 @@ public class Elementary {
                         val = Math.toRadians(val);
                     }
                     if(val%Math.toRadians(90)==0){
-                        System.out.println("Tangent invalid.");
+                        this.error = false;
                         return NaN;
                     }
                     double push_val = Math.tan(val);
@@ -406,7 +407,7 @@ public class Elementary {
                         val = Math.toRadians(val);
                     }
                     if(val%Math.toRadians(90)==0){
-                        System.out.println("Tangent invalid.");
+                        this.error = false;
                         return NaN;
                     }
                     double push_val = Math.tan(val);
@@ -483,9 +484,8 @@ public class Elementary {
 
         numStack.push(ans);
     }
-    public static void main(String[] args) {
-        Elementary m = new Elementary();
-        Scanner scn = new Scanner(System.in);
-        System.out.println(String.format("%.12f",m.calculate(scn.nextLine(),true)));
+
+    public boolean isError() {
+        return error;
     }
 }

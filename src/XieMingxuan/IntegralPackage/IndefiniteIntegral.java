@@ -1,4 +1,4 @@
-package XieMingXuan.IntegralPackage;
+package XieMingxuan.IntegralPackage;
 
 import java.util.Scanner;
 

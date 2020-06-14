@@ -1,14 +1,13 @@
 package LawPoWen;
 
 import ChenYu.Derivate;
-import TanHengJie.*;
-import XieMingXuan.BaseCalc.BaseConversion;
-import XieMingXuan.IntegralPackage.DefiniteIntegral;
-import XieMingXuan.IntegralPackage.IndefiniteIntegral;
-import XieMingXuan.Statistics.BivariateStatistics;
-import XieMingXuan.Statistics.LinearRegression;
-import XieMingXuan.Statistics.QuadraticFitting;
-import XieMingXuan.Statistics.UnivariateStatistics;
+import TanHengjie.*;
+import XieMingxuan.BaseCalc.BaseConversion;
+import XieMingxuan.IntegralPackage.DefiniteIntegral;
+import XieMingxuan.IntegralPackage.IndefiniteIntegral;
+import XieMingxuan.Statistics.LinearRegression;
+import XieMingxuan.Statistics.QuadraticFitting;
+import XieMingxuan.Statistics.UnivariateStatistics;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -241,7 +240,7 @@ public class App  extends JFrame{
                                     if(setMatrix(cal))
                                         result.setText(cal.Mat_mul(cal.getA(), cal.getB()));
                                     else
-                                        result.setText("Invalid Input.");
+                                        result.setText("Invalid.");
                                 }
                             } else if (stacking[0].equals("÷") && cal.SetValueA(stacking[2]).equals("good")) {
                                 cal.MatrixA(stacking[1]);
@@ -250,7 +249,7 @@ public class App  extends JFrame{
                                 cal.MatrixA(stacking[1]);
                                 result.setText(cal.Mat_tranverse());
                             } else {
-                                result.setText("Error");
+                                result.setText("Invalid.");
                             }
                             sum = "0";
                             break;
@@ -260,7 +259,7 @@ public class App  extends JFrame{
                             MatrixCalculator cal = new MatrixCalculator();
                             cal.MatrixA(stacking[0]);
                             if (cal.SetValueA(stacking[1]).equals("Error")) {
-                                result.setText("Invalid Input!");
+                                result.setText("Invalid.");
                             } else
                                 result.setText(DoubleToString(cal.Mat_det(cal.getA())));
                             break;
@@ -270,7 +269,7 @@ public class App  extends JFrame{
                             MatrixCalculator cal = new MatrixCalculator();
                             cal.MatrixA(stacking[0]);
                             if (cal.SetValueA(stacking[1]).equals("Error")) {
-                                result.setText("Invalid Input!");
+                                result.setText("Invalid.");
                             } else
                                 result.setText(cal.PrintMat(cal.invert(cal.getA())));
                             break;
@@ -320,7 +319,7 @@ public class App  extends JFrame{
                             try {
                                 sum = UnivariateStatistics.rundata(calcprocess);
                             } catch (Exception ex) {
-                                sum = "Error";
+                                sum = "Invalid Input.";
                             }
                             result.setText(sum);
                             break;
@@ -340,8 +339,10 @@ public class App  extends JFrame{
                         case 12://基数计算 //done
                         {
                             BaseConversion base = new BaseConversion();
-                            System.out.println(base.run(calcprocess));
-                            result.setText(base.run(calcprocess));
+                            if(base.run(calcprocess)==null)
+                                result.setText("Invalid.");
+                            else
+                                result.setText(base.run(calcprocess));
                             break;
                         }
                         case 13://导数 //done
@@ -354,7 +355,7 @@ public class App  extends JFrame{
                             try {
                                 sum = Derivate.run(d, Double.parseDouble(x), Integer.parseInt(n));
                             } catch (Exception ex) {
-                                sum = "Error";
+                                sum = "Invalid.";
                             } finally {
                                 result.setText(sum);
                             }
@@ -416,14 +417,25 @@ public class App  extends JFrame{
                 else if(modeCal.getSelectedItem().equals("矩阵四则运算")){
                     mode = 1;
                     calcprocess = "";
+                    tmp = "Way to input : \n" +
+                            "option: + - × ÷ -1\n" +
+                            "na ma\n" +
+                            "a11 a12 ... a1m ...an1 an2 ... anm\n" +
+                            "constant/nb mb\n" +
+                            " /b11 b12 ... b1m ...bn1 bn2 ... bnm\n";
+                    Remind.setText(tmp);
                 }
                 else if(modeCal.getSelectedItem().equals("det")){
                     mode = 2;
                     calcprocess = "";
+                    tmp = "Way to input : \nn m\na11 a12 ... a1m ...an1 an2 ... anm\n";
+                    Remind.setText(tmp);
                 }
                 else if(modeCal.getSelectedItem().equals("逆矩阵")){
                     mode = 3;
                     calcprocess = "";
+                    tmp = "Way to input : \nn m\na11 a12 ... a1m ...an1 an2 ... anm\n";
+                    Remind.setText(tmp);
                 }
                 else if(modeCal.getSelectedItem().equals("多元一次方程")){
                     mode = 4;
@@ -458,7 +470,7 @@ public class App  extends JFrame{
                     calcprocess = "";
                     tmp = "option==1 表示查询幂函数\n" +
                             "option==2 表示查询指数函数\n" +
-                            " option==3 表示查询对数函数\n" +
+                            "option==3 表示查询对数函数\n" +
                             "option==4 表示查询三角函数\n" +
                             "option==5 表示查询反三角函数\n" +
                             "option==6 表示查询常数函数\n" + "Way to input : option\n";
@@ -485,12 +497,14 @@ public class App  extends JFrame{
                 else if(modeCal.getSelectedItem().equals("基数计算")){
                     mode = 12;
                     calcprocess = "";
-                    tmp = "Way to input : number oldBase newBase";
+                    tmp = "Way to input : number oldBase newBase\n";
                     Remind.setText(tmp);
                 }
                 else if(modeCal.getSelectedItem().equals("导数")){
                     mode = 13;
                     calcprocess = "";
+                    tmp = "Way to input : n x expression\n";
+                    Remind.setText(tmp);
                 }
                 else if(modeCal.getSelectedItem().equals("常规(角度)")){
                     mode = 14;

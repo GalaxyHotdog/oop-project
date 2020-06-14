@@ -1,4 +1,4 @@
-package TanHengJie;
+package TanHengjie;
 
 
 import com.sun.deploy.security.SandboxSecurity;
@@ -31,7 +31,7 @@ public class Equation {
             }
             return answer;
         } catch (Exception e) {
-            return "Input Invalid.";
+            return "Invalid.";
         }
     }
 
@@ -47,7 +47,7 @@ public class Equation {
         q = (2 * b * b * b - 9 * a * b * c + 27 * a * a * d) / (27 * a * a* a);
         delta = (27 * q * q + 4 * p * p * p) / 27;
         if (a == 0) {
-            answer = "Invalid equation.";
+            answer = "Invalid.";
         } else {
             if (delta > 0) {
                 v = 0.5*(Math.sqrt(delta)-q);

@@ -1,4 +1,4 @@
-package XieMingXuan.BaseCalc;
+package XieMingxuan.BaseCalc;
 
 import java.util.Scanner;
 
