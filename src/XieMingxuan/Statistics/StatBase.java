@@ -57,7 +57,7 @@ public abstract class StatBase
      */
     void showData()
     {
-        if (this instanceof UnivariateStatistics)
+        if (this instanceof XieMingxuan.Statistics.UnivariateStatistics)
         {
             if (isFreqOpen)
                 for (int i = 1; i <= data.size(); i++)
@@ -84,7 +84,7 @@ public abstract class StatBase
             if (option.equals("q"))
                 return;
             key = Integer.parseInt(option);
-            if (this instanceof UnivariateStatistics)
+            if (this instanceof XieMingxuan.Statistics.UnivariateStatistics)
             {
                 if (isFreqOpen)
                 {
@@ -113,7 +113,7 @@ public abstract class StatBase
                 }
                 System.out.println("修改成功");
             }
-            if (this instanceof BivariateStatistics)
+            if (this instanceof XieMingxuan.Statistics.BivariateStatistics)
             {
                 if (key > sizeOfDataList)
                 {
@@ -144,5 +144,5 @@ public abstract class StatBase
     /**
      * run 方法，用于实现统计功能
      */
-    //abstract public void run() throws Exception;
+    abstract public void run() throws Exception;
 }
