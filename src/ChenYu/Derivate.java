@@ -9,12 +9,12 @@ public class Derivate {
     private Token exper=null;
     public static void main(String[] args){
         try {
-            System.out.println(Derivate.run("20xlog(x)",10,0));
+            System.out.println(Derivate.run("5x^2",2,1));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    public static String run(String arg,int x,int n) throws Exception {
+    public static String run(String arg,double x,int n) throws Exception {
         Derivate s=new Derivate(arg);
         return String.valueOf(s.value(x,n));
     }
@@ -64,7 +64,7 @@ public class Derivate {
             }
             else if(c=='x'){//输入变量
                 if(s.size()!=0&&(s.lastElement().mark==2||s.lastElement().mark==3))//变量前有x或数字，加*
-                s.add(new Token("*",5));
+                    s.add(new Token("*",5));
 
                 x=new Token("x",3);
                 flag=true;
@@ -98,13 +98,13 @@ public class Derivate {
                 x=new Token(String.valueOf(c),6);
             else if(c=='('){
                 if(s.lastElement().token.equals("sin")||s.lastElement().token.equals("cos")||s.lastElement().token.equals("tan"))
-                    {
-                        s.add(new Token("(",0));
-                        s.add(new Token("pi",2));
-                        s.add(new Token("/",5));
-                        s.add(new Token("180",2));
-                        s.add(new Token("*",5));
-                    }
+                {
+                    s.add(new Token("(",0));
+                    s.add(new Token("pi",2));
+                    s.add(new Token("/",5));
+                    s.add(new Token("180",2));
+                    s.add(new Token("*",5));
+                }
                 else
                     x=new Token("(",0);
             }

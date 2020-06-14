@@ -1,4 +1,4 @@
-package XieMingxuan.IntegralPackage;
+package XieMingXuan.IntegralPackage;
 
 import java.util.Scanner;
 
@@ -125,3 +125,4 @@ public class IndefiniteIntegral
         return null;
     }
 }
+

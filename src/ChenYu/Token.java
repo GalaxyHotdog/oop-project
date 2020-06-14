@@ -29,7 +29,7 @@ public class Token
         if(f==false){//f标记为false，说明两边有()，为真，说明两边无()
             tokens.remove(0);
             tokens.remove(tokens.size()-1);
-            }
+        }
         for (int i = 0; i < tokens.size(); i++) {
             Token x= (Token) tokens.get(i);
             if(x.mark==7){//函数

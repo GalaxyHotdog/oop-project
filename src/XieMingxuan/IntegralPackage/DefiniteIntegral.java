@@ -1,4 +1,4 @@
-package XieMingxuan.IntegralPackage;
+package XieMingXuan.IntegralPackage;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
@@ -168,7 +168,7 @@ public class DefiniteIntegral
      */
     public static String run(String expression, String upperLimit, String lowerLimit) throws Exception
     {
-        if (expression.contains("^")) return "表达式中含有非法字符 ^ ,请将其改为 Math.pow() 形式重新输入";
+        //if (expression.contains("^")) return "表达式中含有非法字符 ^ ,请将其改为 Math.pow() 形式重新输入";
 
         expression = expression.replace("sin", "Math.sin");
         expression = expression.replace("cos", "Math.cos");
@@ -185,3 +185,4 @@ public class DefiniteIntegral
         return df.format(integral.calc());
     }
 }
+

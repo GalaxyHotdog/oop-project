@@ -1,4 +1,4 @@
-package TanHengjie;
+package TanHengJie;
 
 import java.util.*;
 
@@ -8,15 +8,17 @@ public class MatrixCalculator {
     double[][] ans;
     int nA, mA, nB, mB, nans, mans;
 
-    public void MatrixA(int n1, int m1) {
-        nA = n1;
-        mA = m1;
+    public void MatrixA(String n1) {
+        String[] splited = n1.split("\\s+");
+        nA = Integer.parseInt(splited[0]);
+        mA = Integer.parseInt(splited[1]);
         A = new double[nA][mA];
     }
 
-    public void MatrixB(int n1, int m1) {
-        nB = n1;
-        mB = m1;
+    public void MatrixB(String n1) {
+        String[] splited = n1.split("\\s+");
+        nB = Integer.parseInt(splited[0]);
+        mB = Integer.parseInt(splited[1]);
         B = new double[nB][mB];
     }
 
@@ -28,24 +30,39 @@ public class MatrixCalculator {
         B = b;
     }
 
-    public void GetValue(char o) {
-        Scanner scn = new Scanner(System.in);
-        if (o == 'A') {
-            for (int i = 0; i < nA; i++) {
-                for (int j = 0; j < mA; j++) {
-                    A[i][j] = Double.parseDouble(scn.next());
-                }
-            }
-        } else if (o == 'B') {
-            for (int i = 0; i < nB; i++) {
-                for (int j = 0; j < mB; j++) {
-                    B[i][j] = Double.parseDouble(scn.next());
-                }
-            }
-        }
+    public double[][] getA() {
+        return A;
     }
 
-    public void Mat_mul(double[][] A, double[][] B) {
+    public double[][] getB() {
+        return B;
+    }
+
+    public String SetValueA(String input) {
+        String[] splited = input.split("\\s+");
+        if(splited.length != nA*mA)
+            return "Error";
+        for (int i = 0; i < nA; i++) {
+            for (int j = 0; j < mA; j++) {
+                A[i][j] = Double.parseDouble(splited[i + j]);
+            }
+        }
+        return "good";
+    }
+
+    public String SetValueB(String input) {
+        String[] splited = input.split("\\s+");
+        if(splited.length != nB*mB)
+            return "Error";
+        for (int i = 0; i < nB; i++) {
+            for (int j = 0; j < mB; j++) {
+                B[i][j] = Double.parseDouble(splited[i + j]);
+            }
+        }
+        return "good";
+    }
+
+    public String Mat_mul(double[][] A, double[][] B) {
         if (A[1].length != B.length) {
             System.out.println("Can't be multiply.");
         } else {
@@ -58,11 +75,12 @@ public class MatrixCalculator {
                     }
                 }
             }
+            return PrintMat(ans);
         }
-        PrintMat(ans);
+        return "Can't be multiply.";
     }
 
-    public void Mat_add(double[][] A, double[][] B) {
+    public String Mat_add(double[][] A, double[][] B) {
         if (A.length != B.length || A[1].length != B[1].length) {
             System.out.println("Can't be add.");
         } else {
@@ -72,13 +90,14 @@ public class MatrixCalculator {
                     ans[i][j] = A[i][j] + B[i][j];
                 }
             }
-            PrintMat(ans);
+            return PrintMat(ans);
         }
+        return "Can't be add.";
     }
 
-    public void Mat_minus(double[][] A, double[][] B) {
+    public String Mat_minus(double[][] A, double[][] B) {
         if (A.length != B.length || A[1].length != B[1].length) {
-            System.out.println("Can't be add.");
+            System.out.println("Can't be minus.");
         } else {
             ans = new double[A.length][A[1].length];
             for (int i = 0; i < A.length; i++) {
@@ -86,43 +105,50 @@ public class MatrixCalculator {
                     ans[i][j] = A[i][j] - B[i][j];
                 }
             }
-            PrintMat(ans);
+            return PrintMat(ans);
         }
+        return "Can't be minus.";
     }
 
-    public void Mat_tranverse(char mat, double[][] target) {
-        double[][] des = new double[target[1].length][target.length];
-        for (int i = 0; i < target.length; i++) {
-            for (int j = 0; j < target[1].length; j++) {
-                des[j][i] = target[i][j];
-            }
-        }
-        if (mat == 'A') {
-            this.setA(des);
-        } else if (mat == 'B') {
-            this.setB(des);
-        } else {
-            System.out.println("Not such matrix found.");
-        }
-    }
-
-    public void PrintMat(double[][] A) {
+    public String Mat_tranverse() {
+        double[][] des = new double[A[1].length][A.length];
         for (int i = 0; i < A.length; i++) {
             for (int j = 0; j < A[1].length; j++) {
-                System.out.print(A[i][j] + " ");
+                des[j][i] = A[i][j];
             }
-            System.out.println();
         }
+        this.setA(des);
+        return PrintMat(A);
     }
 
-    public void MatMulConst(char target, double target_2) {
-        if (target == 'A') {
-            for (int i = 0; i < this.A.length; i++) {
-                for (int j = 0; j < this.A[1].length; i++) {
-                    this.A[i][j] *= target_2;
-                }
+
+    public String PrintMat(double[][] A) {
+        String toPrint = "";
+        for (int i = 0; i < A.length; i++) {
+            for (int j = 0; j < A[1].length; j++) {
+                toPrint += (A[i][j] + " ");
+            }
+            toPrint += "\n";
+        }
+        return toPrint;
+    }
+
+    public String MatMulConst( double target_2) {
+        for (int i = 0; i < this.A.length; i++) {
+            for (int j = 0; j < this.A[1].length; i++) {
+                this.A[i][j] *= target_2;
             }
         }
+        return PrintMat(this.A);
+    }
+
+    public String MatDivConst(double target_2) {
+        for (int i = 0; i < this.A.length; i++) {
+            for (int j = 0; j < this.A[1].length; i++) {
+                this.A[i][j] /= target_2;
+            }
+        }
+        return PrintMat(this.A);
     }
 
     public double[][] invert(double a[][]) {
@@ -222,14 +248,5 @@ public class MatrixCalculator {
             }
         }
         return (det);
-    }
-
-    public static void main(String[] args) {
-        MatrixCalculator m = new MatrixCalculator();
-        m.MatrixA(3, 3);
-        m.MatrixB(4, 4);
-        m.GetValue('A');
-        //m.GetValue('B');
-        System.out.println(m.Mat_det(m.A));
     }
 }

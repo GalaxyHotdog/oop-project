@@ -1,4 +1,4 @@
-package XieMingxuan.Statistics;
+package XieMingXuan.Statistics;
 
 import java.util.*;
 
@@ -144,5 +144,5 @@ public abstract class StatBase
     /**
      * run 方法，用于实现统计功能
      */
-    abstract public void run() throws Exception;
+    //abstract public void run() throws Exception;
 }

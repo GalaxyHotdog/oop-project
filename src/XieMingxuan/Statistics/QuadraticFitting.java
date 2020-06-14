@@ -1,10 +1,10 @@
-package XieMingxuan.Statistics;
+package XieMingXuan.Statistics;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Math.*;
-import static XieMingxuan.Statistics.MathCalc.*;
+import static XieMingXuan.Statistics.MathCalc.*;
 
 /**
  * @创建人 谢铭轩
@@ -168,7 +168,7 @@ public class QuadraticFitting extends BivariateStatistics
      *                 option==2 表示进行二次拟合
      * @return 字符串类型的结果值
      */
-    public static String run(String dataList, int option)
+    public static String rundata(String dataList, int option)
     {
         String[] list_Strings = dataList.split(" ");
         List<Double> X = new ArrayList<>();
@@ -228,3 +228,4 @@ public class QuadraticFitting extends BivariateStatistics
         return null;
     }
 }
+

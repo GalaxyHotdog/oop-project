@@ -47,7 +47,7 @@ public class Check {
                 {
                     if ( s.isEmpty() )
                     {
-                         throw new Exception();
+                        throw new Exception();
                     }
                     else
                     {
@@ -74,7 +74,7 @@ public class Check {
             seq[5][0]=seq[5][2]=seq[5][3]=seq[5][7]=true;seq[5][1]=seq[5][4]=seq[5][5]=seq[5][6]=false;
             seq[6][0]=seq[6][2]=seq[6][3]=seq[6][7]=true;seq[6][1]=seq[6][4]=seq[6][5]=seq[6][6]=false;
             seq[7][0]=seq[7][1]=seq[7][4]=seq[7][5]=seq[7][6]=true;seq[7][2]=seq[7][3]=seq[7][7]=false;
-            
+
         }
         private void beginCheck( Vector tokens) throws Exception
         {//)，*//,^不在头
@@ -112,3 +112,4 @@ public class Check {
     }
 
 }
+

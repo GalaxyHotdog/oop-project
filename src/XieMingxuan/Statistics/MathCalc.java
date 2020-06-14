@@ -1,4 +1,4 @@
-package XieMingxuan.Statistics;
+package XieMingXuan.Statistics;
 
 import java.util.List;
 

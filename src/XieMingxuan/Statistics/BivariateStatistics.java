@@ -1,11 +1,10 @@
-package XieMingxuan.Statistics;
+package XieMingXuan.Statistics;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static XieMingxuan.Statistics.MathCalc.*;
-
+import static XieMingXuan.Statistics.MathCalc.*;
 /**
  * @创建人 谢铭轩
  * @创建时间 2020-6-6
@@ -69,14 +68,14 @@ public abstract class BivariateStatistics extends StatBase
                 "max(y) = " + getMax(Y));
     }
 
-    @Override
+   // @Override
     public void run()
     {
         {
             Scanner scanner = new Scanner(System.in);
             while (true)
             {
-                System.out.println("请输入要进行的操作：\n" +
+                System.out.println("BBBBBBB请输入要进行的操作：\n" +
                         "1.输入数据\n" +
                         "2.查看数据\n" +
                         "3.修改数据\n" +
@@ -125,3 +124,4 @@ public abstract class BivariateStatistics extends StatBase
      */
     abstract void regressionCalculation();
 }
+
